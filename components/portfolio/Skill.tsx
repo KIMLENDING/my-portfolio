@@ -80,7 +80,7 @@ const SkillSection = () => {
                     scrollTrigger: {
                         trigger: el,
                         start: 'top 95%',
-                        end: window.innerWidth >= 768 ? (i === 6 ? 'bottom 90%' : 'bottom 30%') : 'bottom 50%',
+                        end: window.innerWidth >= 768 ? (i === 6 ? 'bottom 90%' : 'bottom 30%') : 'bottom 45%',
                         scrub: true, // 스크롤 속도에 따라 애니메이션 속도 조절
                         // markers: true, // 디버깅용 마커 표시
 
