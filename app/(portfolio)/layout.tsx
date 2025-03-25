@@ -10,8 +10,8 @@ import SmoothScroll from "@/hooks/SmoothScroll";
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
     const pathname = usePathname();
-    const sections = ['intro', "skill", "project", "about"];
-    const [activeSection, setActiveSection] = useState("intro");
+    const sections = ['hero', "skill", "project", "about"];
+    const [activeSection, setActiveSection] = useState("hero");
     const [menuOpen, setMenuOpen] = useState(false);
     const navRef = useRef<HTMLDivElement>(null);
     const highlightRef = useRef<HTMLDivElement>(null);
@@ -50,7 +50,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
         if (!targetLink) return;
 
         gsap.to(highlightRef.current, {
-            backgroundColor: targetLink.href.split("#")[1] === 'intro' ? "transparent" : "",
+            backgroundColor: targetLink.href.split("#")[1] === 'hero' ? "transparent" : "",
             x: targetLink.offsetLeft,
             width: targetLink.offsetWidth,
             duration: 0.1,
@@ -108,7 +108,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
                                 : "hover:text-white"
                                 }`}
                         >
-                            {section === 'intro' ? <Image alt="star" src="/circle.svg" height={30} width={30} /> : sections[index]}
+                            {section === 'hero' ? <Image alt="star" src="/circle.svg" height={30} width={30} /> : sections[index]}
                         </a>
                     ))}
                 </div>

@@ -4,7 +4,7 @@ import { Doto } from 'next/font/google';
 import Link from 'next/link';
 
 const doto = Doto({ weight: ['600', '800'], subsets: ['latin'] });
-const IntroSection = () => {
+const HeroSection = () => {
     const devRef = useRef<HTMLDivElement>(null);
     const textRefs = useRef<(HTMLParagraphElement | null)[]>([]);
     useEffect(() => {
@@ -77,7 +77,7 @@ const IntroSection = () => {
                 y: -50,
                 duration: 1,
                 ease: 'power2.in',
-                delay: 3
+                delay: 2
             });
         });
     }, []);
@@ -93,7 +93,7 @@ const IntroSection = () => {
 
 
     return (
-        <section id='intro' className='w-full min-h-screen relative flex flex-col items-center text-black transparent pointer-events-none '>
+        <section id='hero' className='w-full min-h-screen relative flex flex-col items-center text-black transparent pointer-events-none '>
             <div id='커튼' className='absolute top-0 left-0 flex flex-col w-full min-h-screen bg-green-500 ' />
             <div className="mt-20 flex justify-center w-full gap-2 md:gap-4 px-4 ">
                 <span id="t1" className={`font-semibold ${doto.className}`} style={{ fontSize: 'clamp(1rem, 12vw, 20vh)', }}>F</span>
@@ -144,4 +144,4 @@ const IntroSection = () => {
     )
 }
 
-export default IntroSection
+export default HeroSection

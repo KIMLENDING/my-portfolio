@@ -80,7 +80,7 @@ const SkillSection = () => {
                     scrollTrigger: {
                         trigger: el,
                         start: 'top 95%',
-                        end: i === 6 ? 'bottom 90%' : 'bottom 30%',
+                        end: window.innerWidth >= 768 ? (i === 6 ? 'bottom 90%' : 'bottom 30%') : 'bottom 50%',
                         scrub: true, // 스크롤 속도에 따라 애니메이션 속도 조절
                         // markers: true, // 디버깅용 마커 표시
 
@@ -92,6 +92,8 @@ const SkillSection = () => {
                                 } else {
                                     gsap.to(el, { opacity: 0, y: 50 });
                                 }
+                            } else {
+                                gsap.to(el, { opacity: 0 });
                             }
                         },
                         onEnterBack: () => {
@@ -102,6 +104,8 @@ const SkillSection = () => {
                                 } else {
                                     gsap.to(el, { opacity: 1, y: 0 });
                                 }
+                            } else {
+                                gsap.to(el, { opacity: 1 });
                             }
                         },
                         refreshPriority: 1, // 스크롤 성능 최적화
@@ -119,7 +123,7 @@ const SkillSection = () => {
                 className="mx-auto max-w-6xl grid grid-cols-1 md:grid-cols-[1fr_1fr] md:gap-12  "
             >
                 {/* 왼쪽 타이틀 - 데스크탑에서만 sticky */}
-                <div className='flex items-center md:justify-center '>
+                <div className='md:flex md:items-center md:justify-center  sticky top-8 left-3 z-30'>
 
                     <h2 className="text-4xl  md:text-7xl lg:text-8xl md:sticky md:top-1/3 md:self-start px-2  " >
                         <div className={`relative md:after:absolute md:after:bottom-0 md:after:left-0 md:after:w-1 md:after:h-full md:after:bg-[#32cd32] md:after:-mx-8 md:after:rounded-md 
@@ -127,6 +131,7 @@ const SkillSection = () => {
                             Skills
                         </div>
                     </h2>
+
                 </div>
 
 
