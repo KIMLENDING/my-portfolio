@@ -6,6 +6,7 @@ import MouseReversal from '@/components/portfolio/layout/MouseReversal'
 import ParticlesBG from '@/components/portfolio/layout/ParticlesBG'
 import IntroSection from '@/components/portfolio/Intro'
 import SkillSection from '@/components/portfolio/Skill'
+import ProjectSection from '@/components/portfolio/Project'
 
 const page = () => {
 
@@ -21,7 +22,8 @@ const page = () => {
             <div className='relative w-screen h-fit  text-white  '>
                 <IntroSection />
                 <SkillSection />
-                <section id='project' className='min-h-screen w-full py-24 px-10 border-2 border-red-400 bg-blend-difference '>프로젝트</section>
+                <ProjectSection />
+
                 <section id='about' className='min-h-screen w-full py-24 px-10 border-2 border-red-400'>연락</section>
             </div>
         </section>
