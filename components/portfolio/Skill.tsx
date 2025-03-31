@@ -46,21 +46,11 @@ const SkillSection = () => {
                 'Github OAuth를 Next Auth로 연동하여 인증/세션을 관리, Clerk를 통해 사용자 인증/세션을 관리해 본 경험이 있습니다. 각각의 상황에 맞춰 인증 방식을 설계하고 적용할 수 있습니다.',
         },
         {
-            title: 'MongoDB, Convex로 백엔드 구성',
-            icon: ['/icons/mongodb.svg', '/icons/convex.svg'],
+            title: 'MongoDB',
+            icon: ['/icons/mongodb.svg'],
             content:
-                'MongoDB를 사용해 유연한 데이터 저장 구조를 만들고, Convex에서는 실시간성과 클라우드 함수 기반 구조를 활용해 사용자 데이터 흐름을 효율적으로 관리했습니다.',
+                'MongoDB를 사용해 유연한 데이터 저장 구조를 설계하고, 데이터를 효율적으로 관리한 경험이 있습니다. ',
         },
-        // {
-        //     title: 'DND UX 문제 해결 경험 (React Beautiful DND)',
-        //     content:
-        //         'To-do 리스트 프로젝트에서 DND 라이브러리가 grid 형태에서 제한적인 이동만 가능하다는 문제를 해결했습니다. 행마다 DND 필드를 나누고, 필드 간 요소 이동을 가능하게 하여 다중 행/열 드래그를 지원했습니다.',
-        // },
-        // {
-        //     title: '실제 문제 해결: 스톱워치 성능 개선',
-        //     content:
-        //         'Health Timer App 프로젝트에서 interval 방식의 스톱워치가 모바일 백그라운드에서 느려지는 현상을 발견하고, requestAnimationFrame으로 성능을 개선했습니다. 문제의 원인을 분석하고 해결한 실제 경험입니다.',
-        // },
     ]
 
 
