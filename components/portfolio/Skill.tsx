@@ -61,7 +61,7 @@ const SkillSection = () => {
     useEffect(() => {
         const targets = gsap.utils.toArray('.scroll-text') as HTMLElement[]
         console.log(targets)
-        targets.forEach((el, i) => {
+        targets.forEach((el) => {
             gsap.fromTo(
                 el,
                 { opacity: 0, y: 50 },
