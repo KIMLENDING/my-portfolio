@@ -78,7 +78,7 @@ const SkillSection = () => {
                             if (window.innerWidth >= 768) {
 
                                 if (i === 6) {
-                                    gsap.set(el, { position: 'sticky', top: '25%' });
+                                    gsap.set(el, { position: 'sticky', top: '30%' });
                                 } else {
                                     gsap.to(el, { opacity: 0, y: 50 });
                                 }
@@ -128,7 +128,7 @@ const SkillSection = () => {
                 {/* 오른쪽 스크롤 콘텐츠 */}
                 <aside className="flex flex-col ">
                     {scrollContents.map((item, i) => (
-                        <div key={i} className={`md:h-[60vh] h-fit my-10 md:my-0 flex px-2 ${i === scrollContents.length - 1 ? 'md:h-[100vh]  items-center  ' : 'items-end'}`}>
+                        <div key={i} className={`md:h-[60vh] h-fit my-10 md:my-0 flex px-2  items-center   `}>
                             <div className="scroll-text bg-green-800/65 p-4  rounded-lg opacity-0">
                                 <div className='flex flex-row items-center gap-4 mb-2'>
 
