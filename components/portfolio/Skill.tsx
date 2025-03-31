@@ -67,37 +67,18 @@ const SkillSection = () => {
                 {
                     opacity: 1,
                     y: 0,
+                    duration: 1.2,
+                    ease: 'power2.out',
                     scrollTrigger: {
                         trigger: el,
-                        start: 'top 95%',
-                        end: window.innerWidth >= 768 ? (i === 6 ? 'bottom 90%' : 'bottom 30%') : 'bottom 45%',
+                        start: 'top 80%',
+                        toggleActions: 'play none none reverse',
+                        // end: 'bottom 45%',//window.innerWidth >= 768 ? (i === 6 ? 'bottom 90%' : 'bottom 30%') : 'bottom 45%',
                         scrub: true, // 스크롤 속도에 따라 애니메이션 속도 조절
                         // markers: true, // 디버깅용 마커 표시
+                        onEnterBack: () => { }, // 스크롤이 위로 올라갈 때 다시 애니메이션 실행
+                        onLeave: () => { }, // 스크롤이 아래로 내려갈 때 애니메이션 실행
 
-                        onLeave: () => {
-                            if (window.innerWidth >= 768) {
-
-                                if (i === 6) {
-                                    gsap.set(el, { position: 'sticky', top: '30%' });
-                                } else {
-                                    gsap.to(el, { opacity: 0, y: 50 });
-                                }
-                            } else {
-                                gsap.to(el, { opacity: 0 });
-                            }
-                        },
-                        onEnterBack: () => {
-                            if (window.innerWidth >= 768) {
-
-                                if (i === 6) {
-                                    gsap.set(el, { position: 'relative', top: 'auto' });
-                                } else {
-                                    gsap.to(el, { opacity: 1, y: 0 });
-                                }
-                            } else {
-                                gsap.to(el, { opacity: 1 });
-                            }
-                        },
                         refreshPriority: 1, // 스크롤 성능 최적화
                     },
                 }
@@ -110,26 +91,24 @@ const SkillSection = () => {
         <section id="skill" className="min-h-screen w-full py-24 px-10  flex flex-col items-center ">
             <div
                 ref={sectionRef}
-                className="mx-auto max-w-6xl grid grid-cols-1 md:grid-cols-[1fr_1fr] md:gap-12  "
+                className="mx-auto max-w-6xl grid grid-cols-1 md:grid-cols-[1fr_1fr] md:gap-12  relative"
             >
                 {/* 왼쪽 타이틀 - 데스크탑에서만 sticky */}
-                <div className='md:flex md:items-center md:justify-center  sticky top-8 left-3 z-30'>
-
+                <div className='md:flex md:items-center md:justify-center  sticky top-8 left-3 z-30 my-10 md:my-20'>
                     <h2 className="text-4xl  md:text-7xl lg:text-8xl md:sticky md:top-1/3 md:self-start px-2  " >
                         <div className={`relative md:after:absolute md:after:bottom-0 md:after:left-0 md:after:w-1 md:after:h-full md:after:bg-[#32cd32] md:after:-mx-8 md:after:rounded-md 
                     ${anton.className}`}>
                             Skills
                         </div>
                     </h2>
-
                 </div>
 
 
                 {/* 오른쪽 스크롤 콘텐츠 */}
                 <aside className="flex flex-col ">
                     {scrollContents.map((item, i) => (
-                        <div key={i} className={`md:h-[60vh] h-fit my-10 md:my-0 flex px-2  items-center   `}>
-                            <div className="scroll-text bg-green-800/65 p-4  rounded-lg opacity-0">
+                        <div key={i} className={`  h-fit my-10 md:my-20 flex px-2  items-center   `}>
+                            <div className="scroll-text bg-green-800/65 p-4  rounded-lg opacity-0 shadow-lg">
                                 <div className='flex flex-row items-center gap-4 mb-2'>
 
                                     {item.title && (
@@ -146,6 +125,7 @@ const SkillSection = () => {
                         </div>
                     ))}
                 </aside>
+                {/* <div className='min-h-[100vh]'></div> */}
             </div>
 
         </section>
