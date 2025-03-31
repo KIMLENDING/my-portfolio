@@ -3,6 +3,7 @@ import React, { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { Anton } from 'next/font/google';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import Image from 'next/image';
 gsap.registerPlugin(ScrollTrigger);
 const anton = Anton({ weight: '400', subsets: ['latin'] });
 
@@ -115,7 +116,7 @@ const SkillSection = () => {
                                         <h3 className={` text-2xl font-semibold mb-2 text-[#00ff00] ${anton.className}`}>{item.title}</h3>
                                     )}
                                     {item.icon && item.icon.map((icon, i) => (
-                                        <img key={i} src={icon} alt="icon" className="w-12 h-12" />
+                                        <Image key={i} src={icon} alt="icon" className="w-12 h-12" />
                                     ))}
                                 </div>
                                 <p className="text-lg leading-relaxed break-keep">
