@@ -10,7 +10,7 @@ export default function ScrollFadeIn() {
     useEffect(() => {
         gsap.registerPlugin(ScrollTrigger);
 
-        sectionsRef.current.forEach((section, index) => {
+        sectionsRef.current.forEach((section,) => {
             gsap.fromTo(
                 section,
                 { opacity: 0, y: 50 },

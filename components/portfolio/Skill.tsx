@@ -98,7 +98,7 @@ const SkillSection = () => {
                 <div className='md:flex md:items-center md:justify-center  sticky top-8 left-3 z-30 my-10 md:my-20'>
                     <h2 className="text-4xl  md:text-7xl lg:text-8xl md:sticky md:top-1/3 md:self-start px-2  " >
                         <div className={`relative md:after:absolute md:after:bottom-0 md:after:left-0 md:after:w-1 md:after:h-full md:after:bg-[#32cd32] md:after:-mx-8 md:after:rounded-md 
-                    ${anton.className}`}>
+                    ${anton.className} select-none`}>
                             Skills
                         </div>
                     </h2>
@@ -116,7 +116,7 @@ const SkillSection = () => {
                                         <h3 className={` text-2xl font-semibold mb-2 text-[#00ff00] ${anton.className}`}>{item.title}</h3>
                                     )}
                                     {item.icon && item.icon.map((icon, i) => (
-                                        <Image key={i} src={icon} alt="icon" className="w-12 h-12" />
+                                        <Image key={i} src={icon} alt="icon" width={400} height={400} className="w-12 h-12" />
                                     ))}
                                 </div>
                                 <p className="text-lg leading-relaxed break-keep">

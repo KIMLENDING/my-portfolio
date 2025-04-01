@@ -28,7 +28,7 @@ const ProjectSection = () => {
                 <div className='md:flex md:items-center md:justify-center  sticky top-8 left-3 z-30 my-10 md:my-20'>
                     <h2 className="text-4xl  md:text-7xl lg:text-8xl md:sticky md:top-1/3 md:self-start px-2  " >
                         <div className={`relative md:after:absolute md:after:bottom-0 md:after:left-0 md:after:w-1 md:after:h-full md:after:bg-[#32cd32] md:after:-mx-8 md:after:rounded-md 
-                    ${anton.className}`}>
+                    ${anton.className} select-none`}>
                             Project
                         </div>
                     </h2>
@@ -47,7 +47,10 @@ const ProjectSection = () => {
                                     )}
 
                                 </div>
-                                <Image src={item.thumbnail} height={1000} width={1000} alt='' className='aspect-video ' ></Image>
+                                <div className='animate-pulse aspect-video bg-zinc-700 '>
+
+                                </div>
+                                {/* <Image src={item.thumbnail} height={1000} width={1000} alt='' className='aspect-video ' ></Image> */}
                             </div>
                         </div>
                     ))}
