@@ -1,6 +1,6 @@
 import React, { useRef } from 'react'
 import { Anton } from 'next/font/google';
-import Image from 'next/image';
+// import Image from 'next/image';
 const anton = Anton({ weight: '400', subsets: ['latin'] });
 
 const ProjectSection = () => {
@@ -24,7 +24,7 @@ const ProjectSection = () => {
                 ref={sectionRef}
                 className="mx-auto max-w-6xl grid grid-cols-1 md:grid-cols-[1fr_1fr] md:gap-12  "
             >
-                {/* 왼쪽 타이틀 - 데스크탑에서만 sticky */}
+                {/* 왼쪽 타이틀  */}
                 <div className='md:flex md:items-center md:justify-center  sticky top-8 left-3 z-30 my-10 md:my-20'>
                     <h2 className="text-4xl  md:text-7xl lg:text-8xl md:sticky md:top-1/3 md:self-start px-2  " >
                         <div className={`relative md:after:absolute md:after:bottom-0 md:after:left-0 md:after:w-1 md:after:h-full md:after:bg-[#32cd32] md:after:-mx-8 md:after:rounded-md 
@@ -36,10 +36,10 @@ const ProjectSection = () => {
 
 
                 {/* 오른쪽 스크롤 콘텐츠 */}
-                <aside className="flex flex-col ">
+                <aside className="flex flex-col">
                     {scrollContents.map((item, i) => (
-                        <div key={i} className={`  h-fit my-10 md:my-20 flex px-2  items-center   `}>
-                            <div className=" bg-green-800/65 p-4  rounded-lg  shadow-lg">
+                        <div key={i} className={`w-full h-fit my-10 md:my-20 flex px-2  items-center   `}>
+                            <div className="w-full bg-green-800/65 p-4  rounded-lg  shadow-lg">
                                 <div className='flex flex-row items-center gap-4 mb-2'>
 
                                     {item.project && (
