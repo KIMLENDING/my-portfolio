@@ -12,7 +12,7 @@ const scrollContents = [
         title: 'Next.js + App Router',
         icon: ['/icons/nextjs.svg'],
         content:
-            'Next.js의 App Router 구조를 기반으로 페이지 라우팅, 동적 세그먼트, 레이아웃 구성, SEO 최적화까지 직접 적용해 구조적인 웹 애플리케이션을 개발했습니다. Health Timer App, To-do 리스트, 순간 기억력 게임 등 다양한 프로젝트에 활용했습니다.',
+            'Next.js의 App Router 구조를 기반으로 페이지 라우팅, 동적 세그먼트, 레이아웃 구성, SEO 최적화까지 직접 적용해 구조적인 웹 애플리케이션을 개발했습니다. H-Helper App, To-do 리스트, 순간 기억력 게임 등 다양한 프로젝트에 활용했습니다.',
     },
     {
         title: 'React Query',

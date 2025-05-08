@@ -14,9 +14,9 @@ const ProjectSection = () => {
     const scrollContents = [
         {
             thumbnail: '/img/h-helper.png',
-            project: 'Health Timer App',
+            project: 'H-Helper App',
             tags: ['Next.js', 'React Query', 'UI/UX Design'],
-            content: '운동 기록을 관리하는 웹 애플리케이션으로, Next.js와 React Query를 활용해 서버 상태를 관리했습니다. 사용자 경험을 고려한 UI/UX 설계로, 운동 기록을 쉽게 추가하고 관리할 수 있습니다.'
+            content: '운동 기록을 관리하는 웹 애플리케이션으로, Next.js와 React Query를 활용해 서버 상태를 관리했습니다. 사용자 경험을 고려한 UI/UX 설계로, 운동 계획, 운동 히스토리, 운동 데이터 분석 등 여러 기능을 쉽게 사용할 수 있습니다.'
 
         },
         {
