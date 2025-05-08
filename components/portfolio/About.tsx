@@ -1,13 +1,16 @@
 import { Book, Github, GraduationCap, Instagram, Mail, MapPinCheck, PhoneCall } from 'lucide-react';
 import React, { useRef } from 'react';
-
+import { Anton } from 'next/font/google';
+import TitleGsap from './layout/TitleGsap';
+import Image from 'next/image';
+const anton = Anton({ weight: '400', subsets: ['latin'] });
 const AboutSection = () => {
     const sectionRef = useRef(null);
 
     const skills = [
         { category: "Frontend", items: ["HTML/CSS", "JavaScript", "React", "Next.js", "TypeScript"] },
         { category: "Backend", items: ["Node.js", "MongoDB", "Express"] },
-        { category: "Others", items: ["Git", "Webpack", "GSAP", 'Lenis', "Tailwind CSS", 'React Query'] }
+        { category: "Others", items: ["GSAP", 'Lenis', "Tailwind CSS", 'React Query'] }
     ];
 
     const education = [
@@ -19,37 +22,25 @@ const AboutSection = () => {
     ];
 
     return (
-        <section
-            id="about"
-            ref={sectionRef}
-            className="w-full bg-zinc-800 overflow-hidden"
-            style={{ minHeight: '100vh', height: 'auto', scrollSnapAlign: 'start' }}
-        >
-            {/* 헤더 영역 */}
-            <div className="min-h-[40vh] flex items-center px-4 md:px-10 pt-16">
-                <div className="mx-auto max-w-6xl w-full">
-                    <h2 className="text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-6">
-                        <span className="relative pl-0 md:pl-6 block">
-                            <span className="absolute left-0 top-1/2 -translate-y-1/2 w-1 md:w-2 h-16 md:h-24 bg-green-500 rounded-md hidden md:block"></span>
-                            ABOUT ME
-                        </span>
-                    </h2>
-                    <p className="text-green-400 text-lg md:text-xl pl-0 md:pl-6 mb-8">
-                        개발자 소개 및 연락처
-                    </p>
-                </div>
-            </div>
+        <section ref={sectionRef} id='abot' className='min-h-screen w-full py-24 px-4 md:px-10 bg-zinc-900'>
+            <div
+                className="mx-auto max-w-6xl "
+            >
+                {/* 헤더 영역 */}
+                <TitleGsap sectionRef={sectionRef} title={'About Me'} />
 
-            {/* 콘텐츠 영역 */}
-            <div className="px-4 md:px-10 py-8 md:py-16">
+                {/* 콘텐츠 영역 */}
+
                 <div className="mx-auto max-w-6xl">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20">
                         {/* 왼쪽: 개인 소개 */}
                         <div className="space-y-8">
                             <div className="relative">
                                 <div className="aspect-square bg-zinc-700 rounded-2xl overflow-hidden">
-                                    <img
-                                        src="/api/placeholder/500/500"
+                                    <Image
+                                        width={500}
+                                        height={500}
+                                        src="/img/starrail.webp"
                                         alt="Profile"
                                         className="w-full h-full object-cover"
                                     />
@@ -67,36 +58,7 @@ const AboutSection = () => {
                                 </p>
                             </div>
 
-                            <div>
-                                <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-4">
-                                    <MapPinCheck className='text-green-400' />
-                                    위치
-                                </h3>
-                                <p className="text-gray-300 ml-7">원주시, 대한민국</p>
-                            </div>
 
-                            <div className="space-y-4">
-                                <h3 className="text-xl font-bold text-white mb-2">연락처</h3>
-                                <div className="flex flex-col space-y-3">
-                                    <a href="mailto:email@example.com" className="flex items-center gap-4 text-gray-300 hover:text-green-400 transition-colors">
-                                        <Mail className='text-green-400' />
-                                        gotslaakaak@gmail.com
-                                    </a>
-                                    <a href="tel:+8210-4337-8193" className="flex items-center gap-4 text-gray-300 hover:text-green-400 transition-colors">
-                                        <PhoneCall className='text-green-400' />
-                                        +82 10-4337-8193
-                                    </a>
-                                </div>
-
-                                <div className="flex space-x-4 mt-4">
-                                    <a href="https://github.com/KIMLENDING" className="w-10 h-10 bg-zinc-700 rounded-full flex items-center justify-center hover:bg-green-500 transition-colors">
-                                        <Github />
-                                    </a>
-                                    <a href="https://www.instagram.com/kim_lending/" className="w-10 h-10 bg-zinc-700 rounded-full flex items-center justify-center hover:bg-green-500 transition-colors">
-                                        <Instagram />
-                                    </a>
-                                </div>
-                            </div>
                         </div>
 
                         {/* 오른쪽: 스킬 및 학력 */}
@@ -197,6 +159,36 @@ const AboutSection = () => {
                                 </form>
                             </div> */}
                         </div>
+                        <div>
+                            <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-4">
+                                <MapPinCheck className='text-green-400' />
+                                위치
+                            </h3>
+                            <p className="text-gray-300 ml-7">원주시, 대한민국</p>
+                        </div>
+
+                        <div className="space-y-4">
+                            <h3 className="text-xl font-bold text-white mb-2">연락처</h3>
+                            <div className="flex flex-col space-y-3">
+                                <a href="mailto:email@example.com" className="flex items-center gap-4 text-gray-300 hover:text-green-400 transition-colors">
+                                    <Mail className='text-green-400' />
+                                    gotslaakaak@gmail.com
+                                </a>
+                                <a href="tel:+8210-4337-8193" className="flex items-center gap-4 text-gray-300 hover:text-green-400 transition-colors">
+                                    <PhoneCall className='text-green-400' />
+                                    +82 10-4337-8193
+                                </a>
+                            </div>
+
+                            <div className="flex space-x-4 mt-4">
+                                <a href="https://github.com/KIMLENDING" className="w-10 h-10 bg-zinc-700 rounded-full flex items-center justify-center hover:bg-green-500 transition-colors">
+                                    <Github />
+                                </a>
+                                <a href="https://www.instagram.com/kim_lending/" className="w-10 h-10 bg-zinc-700 rounded-full flex items-center justify-center hover:bg-green-500 transition-colors">
+                                    <Instagram />
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -216,6 +208,7 @@ const AboutSection = () => {
                     </div>
                 </div>
             </div>
+
         </section>
     );
 };

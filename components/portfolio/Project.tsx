@@ -1,10 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Anton } from 'next/font/google';
-import { ArrowBigRight, ArrowRight } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
+import Image from 'next/image';
+import TitleGsap from './layout/TitleGsap';
 gsap.registerPlugin(ScrollTrigger);
-const anton = Anton({ weight: '400', subsets: ['latin'] });
 const ProjectSection = () => {
     const sectionRef = useRef(null);
     const titleRef = useRef(null);
@@ -22,8 +22,8 @@ const ProjectSection = () => {
         {
             thumbnail: '/img/game.png',
             project: 'Moment Memory Game',
-            tags: ['GSAP', 'Lenis', 'Animation'],
-            content: '순간 기억력 게임으로, GSAP과 Lenis를 활용해 부드러운 스크롤과 애니메이션 효과를 구현했습니다. 사용자 경험을 고려한 UI/UX 설계로, 게임의 몰입감을 높였습니다.'
+            tags: ['GSAP', 'Animation'],
+            content: '순간 기억력 게임으로, GSAP를 활용해 부드러운 애니메이션 효과를 구현했습니다.  '
         },
         {
             thumbnail: '/img/portfolio.png',
@@ -56,7 +56,7 @@ const ProjectSection = () => {
 
         // 스킬 아이템 애니메이션
         const skillItems = gsap.utils.toArray('.skill-card') as HTMLElement[];
-        skillItems.forEach((el, i) => {
+        skillItems.forEach((el) => {
             gsap.fromTo(
                 el,
                 { opacity: 0, y: 50 },
@@ -84,17 +84,7 @@ const ProjectSection = () => {
             >
                 {/* 왼쪽 타이틀 */}
                 <div className='md:sticky md:top-24 md:self-start md:h-[calc(100vh-12rem)] flex flex-col justify-between'>
-                    <div
-                        ref={titleRef}
-                        className="relative inline-block opacity-0"
-                    >
-                        <h2 className={`${anton.className} text-5xl md:text-7xl lg:text-8xl text-white relative z-10`}>
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-green-600">
-                                Projects
-                            </span>
-                        </h2>
-
-                    </div>
+                    <TitleGsap sectionRef={sectionRef} title={'Projects'} />
 
                     <div className="hidden md:flex flex-col space-y-6 pl-6">
                         {scrollContents.map((item, idx) => (
@@ -113,7 +103,7 @@ const ProjectSection = () => {
                 </div>
 
                 {/* 오른쪽 프로젝트 콘텐츠 */}
-                <div className="flex flex-col space-y-16 md:space-y-24 py-8">
+                <div className="flex flex-col space-y-16 md:space-y-24 ">
                     {scrollContents.map((item, i) => (
                         <div
                             key={i}
@@ -125,10 +115,12 @@ const ProjectSection = () => {
                                 {/* 썸네일 이미지 */}
                                 <div className="relative overflow-hidden">
                                     <div className="aspect-video bg-zinc-700 group-hover:bg-zinc-600 transition-all duration-500">
-                                        <img
+                                        <Image
                                             src={item.thumbnail}
                                             alt={item.project}
                                             className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-all"
+                                            width={500}
+                                            height={300}
                                         />
                                     </div>
                                     <div className="absolute inset-0 bg-gradient-to-t from-zinc-900 to-transparent opacity-60"></div>
