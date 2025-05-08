@@ -74,7 +74,7 @@ export default function MatterComponent() {
                 // 화면 바깥으로 나간 경우, 원래 위치로 강제 이동
 
                 if (!Bounds.contains(render.bounds, body.position)) {
-                    console.log("바깥으로 나감", body);
+
                     Body.setPosition(body, { x: 400, y: 100 }); // 강제로 다시 넣기
                 }
 

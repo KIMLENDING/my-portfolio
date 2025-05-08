@@ -6,7 +6,7 @@ import SplitType from 'split-type';
 const DeveloperText = ({ className }: { className?: string }) => {
     useEffect(() => {
         const split = new SplitType('#devs', { types: 'chars' });
-        console.log(split);
+
         gsap.fromTo(split.chars, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.8, ease: 'power2.out', stagger: 0.1 });
     }, []);
 

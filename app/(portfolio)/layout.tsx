@@ -41,21 +41,37 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
         if (!navRef.current || !highlightRef.current) return;
 
         const navLinks = navRef.current.querySelectorAll("a");
-        console.log(activeSection)
         const activeIndex = sections.indexOf(activeSection);
+
         if (activeIndex === -1) return;
 
         const targetLink = navLinks[activeIndex];
-        console.log(targetLink.href.split("#")[1]);
         if (!targetLink) return;
 
         gsap.to(highlightRef.current, {
-            backgroundColor: targetLink.href.split("#")[1] === 'hero' ? "transparent" : "",
+            backgroundColor: targetLink.href.split("#")[1] === 'hero' ? "transparent" : "", // hero 섹션일 때 배경색 투명하게
             x: targetLink.offsetLeft,
             width: targetLink.offsetWidth,
             duration: 0.1,
             ease: "power2.out",
         });
+
+        let sectionAll = gsap.utils.toArray('section') // 모든 섹션을 가져옴
+        console.log("sectionAll", sectionAll);
+        let tops = (sectionAll as HTMLElement[]).map(panel => ScrollTrigger.create({ trigger: panel, start: 'top top', })); // 각각의 섹션의 시작 위치를 가져옴
+        // ScrollTrigger.create({
+        //     snap: {
+        //         snapTo: (progress, self: any) => { // 스냅시키는 위치를 설정
+        //             let panelStarts = tops.map(top => top.start) // 섹션의 시작 위치를 가져옴
+        //             console.log("panelStarts", panelStarts);
+        //             let snapScroll = gsap.utils.snap(panelStarts, self.scroll()); // 현재 스크롤 위치와 가장 가까운 섹션의 시작 위치를 가져옴
+        //             return gsap.utils.normalize(0, ScrollTrigger.maxScroll(window), snapScroll); // 스크롤 위치에 따라 섹션을 스냅시킴 (min, max, value)
+        //             // 0 ~ 페이지의 스크롤 가능한 최대 값 ,  이걸 0 ~ 1로 변환 해서 snapScroll을 백분율로 변환
+        //         },
+        //         duration: 0.7 // 스냅시키는 시간
+        //     },
+        //     markers: true,
+        // })
     }, [activeSection]);
 
 

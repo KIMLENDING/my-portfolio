@@ -8,19 +8,18 @@ gsap.registerPlugin(ScrollTrigger);
 const anton = Anton({ weight: '400', subsets: ['latin'] });
 
 const SkillSection = () => {
-
     const scrollContents = [
         {
             title: 'Next.js + App Router',
             icon: ['/icons/nextjs.svg'],
             content:
-                'Next.js의 App Router 구조를 기반으로 페이지 라우팅, 동적 세그먼트, 레이아웃 구성, SEO 최적화까지 직접 적용해 구조적인 웹 애플리케이션을 개발했습니다. Health Timer App, To-do 리스트, 게임 등 다양한 프로젝트에 활용했습니다.',
+                'Next.js의 App Router 구조를 기반으로 페이지 라우팅, 동적 세그먼트, 레이아웃 구성, SEO 최적화까지 직접 적용해 구조적인 웹 애플리케이션을 개발했습니다. Health Timer App, To-do 리스트, 순간 기억력 게임 등 다양한 프로젝트에 활용했습니다.',
         },
         {
-            title: 'React Query + Axios',
-            icon: ['/icons/reactquery.svg', '/icons/axios.svg',],
+            title: 'React Query',
+            icon: ['/icons/reactquery.svg'],
             content:
-                'React Query로 서버 상태를 관리하며, API 요청은 Axios로 처리했습니다. Health Timer App 사이트에서 사용자 운동 기록을 불러오고, 자동 캐싱 및 리패칭으로 UX를 최적화한 경험이 있습니다.',
+                'React Query로 서버 상태를 관리했습니다. H-Helper App 사이트에서 사용자 운동 기록을 불러오고, 자동 캐싱 및 리패칭으로 UX를 최적화한 경험이 있습니다.',
         },
         {
             title: 'Zustand로 상태 관리',
@@ -41,94 +40,137 @@ const SkillSection = () => {
                 '포트폴리오와 순간 기억력 게임 프로젝트에서 Lenis로 부드러운 스크롤을 적용하고, ScrollTrigger로 각 요소가 등장하는 애니메이션을 구성했습니다. 시각적 몰입감과 UX를 함께 고려한 설계를 할 수 있습니다.',
         },
         {
-            title: 'Next Auth + Clerk 로그인 경험',
-            icon: ['/icons/nextauth.png', '/icons/clerk.svg'],
+            title: 'Next Auth',
+            icon: ['/icons/nextauth.png'],
             content:
-                'Github OAuth를 Next Auth로 연동하여 인증/세션을 관리, Clerk를 통해 사용자 인증/세션을 관리해 본 경험이 있습니다. 각각의 상황에 맞춰 인증 방식을 설계하고 적용할 수 있습니다.',
+                'Google, GitHub OAuth를 연동하여 인증/세션을 관리해 본 경험이 있습니다. Credentials 로그인도 함께 구현했으며, 사용자 정보를 MongoDB에 저장하고, JWT 기반으로 role, provider 같은 사용자 메타데이터를 세션에 포함시켜 클라이언트에서 인증 상태에 따라 유연하게 대응할 수 있도록 구성했습니다.',
         },
         {
             title: 'MongoDB',
             icon: ['/icons/mongodb.svg'],
             content:
-                'MongoDB를 사용해 유연한 데이터 저장 구조를 설계하고, 데이터를 효율적으로 관리한 경험이 있습니다. ',
+                'MongoDB를 사용해 유연한 데이터 저장 구조를 설계하고, 데이터를 효율적으로 관리한 경험이 있습니다. 특히 Health Timer App에서 운동 기록을 populate하는 과정에서 MongoDB의 장점을 활용했습니다.',
         },
-    ]
+    ];
 
-
-
-    const sectionRef = useRef(null)
+    const sectionRef = useRef(null);
+    const titleRef = useRef(null);
+    const skillsRef = useRef(null);
 
     useEffect(() => {
-        const targets = gsap.utils.toArray('.scroll-text') as HTMLElement[]
-        console.log(targets)
-        targets.forEach((el) => {
+        // 타이틀 애니메이션
+        gsap.fromTo(
+            titleRef.current,
+            { opacity: 0, x: -50 },
+            {
+                opacity: 1,
+                x: 0,
+                duration: 1.2,
+                ease: 'power2.out',
+                scrollTrigger: {
+                    trigger: sectionRef.current,
+                    start: 'top 80%',
+                    end: 'top 50%',
+                    toggleActions: 'play none none reverse',
+                    scrub: 0.5,
+
+                }
+            }
+        );
+
+        // 스킬 아이템 애니메이션
+        const skillItems = gsap.utils.toArray('.skill-card') as HTMLElement[];
+        skillItems.forEach((el, i) => {
             gsap.fromTo(
                 el,
                 { opacity: 0, y: 50 },
                 {
                     opacity: 1,
                     y: 0,
-                    duration: 1.2,
+                    duration: 0.3,
                     ease: 'power2.out',
                     scrollTrigger: {
                         trigger: el,
-                        start: 'top 80%',
+                        start: 'top 90%',
+                        end: 'bottom 70%',
                         toggleActions: 'play none none reverse',
-                        // end: 'bottom 45%',//window.innerWidth >= 768 ? (i === 6 ? 'bottom 90%' : 'bottom 30%') : 'bottom 45%',
-                        scrub: true, // 스크롤 속도에 따라 애니메이션 속도 조절
-                        // markers: true, // 디버깅용 마커 표시
-                        onEnterBack: () => { }, // 스크롤이 위로 올라갈 때 다시 애니메이션 실행
-                        onLeave: () => { }, // 스크롤이 아래로 내려갈 때 애니메이션 실행
-
-                        refreshPriority: 1, // 스크롤 성능 최적화
+                        scrub: 0.3,
                     },
                 }
-            )
-        })
-    }, [])
-
+            );
+        });
+    }, []);
 
     return (
-        <section id="skill" className="min-h-screen w-full py-24 px-10  flex flex-col items-center ">
-            <div
-                ref={sectionRef}
-                className="mx-auto max-w-6xl grid grid-cols-1 md:grid-cols-[1fr_1fr] md:gap-12  relative"
-            >
-                {/* 왼쪽 타이틀 - 데스크탑에서만 sticky */}
-                <div className='md:flex md:items-center md:justify-center  sticky top-8 left-3 z-30 my-10 md:my-20'>
-                    <h2 className="text-4xl  md:text-7xl lg:text-8xl md:sticky md:top-1/3 md:self-start px-2  " >
-                        <div className={`relative md:after:absolute md:after:bottom-0 md:after:left-0 md:after:w-1 md:after:h-full md:after:bg-[#32cd32] md:after:-mx-8 md:after:rounded-md 
-                    ${anton.className} select-none`}>
-                            Skills
-                        </div>
-                    </h2>
+        <section
+            id="skill"
+            ref={sectionRef}
+            className="min-h-screen w-full py-32 px-4 md:px-10 bg-gradient-to-b from-gray-900 to-black"
+        >
+            <div className="max-w-6xl mx-auto relative">
+                {/* 섹션 제목 */}
+                <div className=" mb-16 md:mb-24 flex items-start">
+                    <div
+                        ref={titleRef}
+                        className="relative inline-block opacity-0"
+                    >
+                        <h2 className={`${anton.className} text-5xl md:text-7xl lg:text-8xl text-white relative z-10`}>
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-green-600">
+                                Skills
+                            </span>
+                        </h2>
+
+                    </div>
                 </div>
 
+                {/* 스킬 그리드 */}
+                <div
+                    ref={skillsRef}
+                    className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8"
+                >
+                    {scrollContents.map((skill, i) => (
+                        <div
+                            key={i}
+                            className="skill-card relative bg-gray-800/80 backdrop-blur-sm rounded-xl p-6 border border-green-500/20 transition-all overflow-hidden
+                                hover:shadow-lg hover:shadow-green-500/20 group
+                                hover:scale-105 duration-300 ease-in-out
+                            "
+                        >
+                            {/* 배경 액센트 */}
+                            {/* <div className="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-green-500 to-green-300 rounded-l"></div>
+                            <div className="absolute top-0 right-0 h-1 w-1/3 bg-gradient-to-r from-transparent to-green-500/50 rounded-tr"></div> */}
 
-                {/* 오른쪽 스크롤 콘텐츠 */}
-                <aside className="flex flex-col ">
-                    {scrollContents.map((item, i) => (
-                        <div key={i} className={`  h-fit my-10 md:my-20 flex px-2  items-center   `}>
-                            <div className="scroll-text bg-green-800/65 p-4  rounded-lg opacity-0 shadow-lg">
-                                <div className='flex flex-row items-center gap-4 mb-2'>
-
-                                    {item.title && (
-                                        <h3 className={` text-2xl font-semibold mb-2 text-[#00ff00] ${anton.className}`}>{item.title}</h3>
-                                    )}
-                                    {item.icon && item.icon.map((icon, i) => (
-                                        <Image key={i} src={icon} alt="icon" width={400} height={400} className="w-12 h-12" />
+                            {/* 제목과 아이콘 */}
+                            <div className="flex items-center gap-3 mb-4">
+                                <div className="flex shrink-0 gap-2">
+                                    {skill.icon && skill.icon.map((icon, iconIdx) => (
+                                        <div key={iconIdx} className="relative w-10 h-10 bg-gray-700 rounded-lg p-1.5 flex items-center justify-center shadow-md">
+                                            <Image
+                                                src={icon}
+                                                alt={`${skill.title} icon`}
+                                                width={30}
+                                                height={30}
+                                                className="object-contain"
+                                            />
+                                        </div>
                                     ))}
                                 </div>
-                                <p className="text-lg leading-relaxed break-keep">
-                                    {item.content}
-                                </p>
+                                <h3 className={`${anton.className} text-xl md:text-2xl font-bold text-green-400 truncate`}>
+                                    {skill.title}
+                                </h3>
                             </div>
+
+                            {/* 설명 */}
+                            <p className="text-gray-300 text-base leading-relaxed break-keep">
+                                {skill.content}
+                            </p>
+
+                            {/* 배경 글로우 효과 */}
+                            <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-green-500/10 rounded-full blur-3xl pointer-events-none"></div>
                         </div>
                     ))}
-                </aside>
-                {/* <div className='min-h-[100vh]'></div> */}
+                </div>
             </div>
-
         </section>
     );
 };
