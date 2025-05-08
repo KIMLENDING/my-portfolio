@@ -27,7 +27,7 @@ const TitleGsap = ({ sectionRef, title }: { sectionRef: React.RefObject<HTMLElem
                 }
             }
         );
-    }, []);
+    }, [sectionRef]);
     return (
         <div className=" mb-16 md:mb-24 flex items-start">
             <div

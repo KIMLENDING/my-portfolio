@@ -1,9 +1,7 @@
 import { Book, Github, GraduationCap, Instagram, Mail, MapPinCheck, PhoneCall } from 'lucide-react';
 import React, { useRef } from 'react';
-import { Anton } from 'next/font/google';
 import TitleGsap from './layout/TitleGsap';
 import Image from 'next/image';
-const anton = Anton({ weight: '400', subsets: ['latin'] });
 const AboutSection = () => {
     const sectionRef = useRef(null);
 

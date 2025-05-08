@@ -36,7 +36,7 @@ export default function GravityWithBounce() {
                 y: Math.random() * 50 + 50,
             }))
         );
-    }, []);
+    }, [svgImages]);
 
     useEffect(() => {
         if (icons.length === 0) return;
