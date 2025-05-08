@@ -22,7 +22,7 @@ const AboutSection = () => {
     ];
 
     return (
-        <section ref={sectionRef} id='abot' className='min-h-screen w-full py-24 px-4 md:px-10 bg-zinc-900'>
+        <section ref={sectionRef} id='about' className='min-h-screen w-full py-24 px-4 md:px-10 bg-zinc-900'>
             <div
                 className="mx-auto max-w-6xl "
             >
