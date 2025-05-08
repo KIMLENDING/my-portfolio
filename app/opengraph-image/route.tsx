@@ -59,7 +59,7 @@ export async function GET() {
                         color: "transparent",
                         marginBottom: "16px",
                     }}>
-                        KimLending
+                        Kim GyeGwan
                     </div>
 
                     {/* 구분선 */}
