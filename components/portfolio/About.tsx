@@ -1,3 +1,4 @@
+'use client'
 import { Book, Github, GraduationCap, Instagram, Mail, MapPinCheck, PhoneCall } from 'lucide-react';
 import React, { useRef } from 'react';
 import TitleGsap from './layout/TitleGsap';
@@ -8,7 +9,7 @@ const AboutSection = () => {
     const skills = [
         { category: "Frontend", items: ["HTML/CSS", "JavaScript", "React", "Next.js", "TypeScript"] },
         { category: "Backend", items: ["Node.js", "MongoDB", "Express"] },
-        { category: "Others", items: ["GSAP", 'Lenis', "Tailwind CSS", 'React Query'] }
+        { category: "Others", items: ["GSAP", 'Lenis', "Tailwind CSS", 'vercel', 'React Query', 'zustand'] }
     ];
 
     const education = [
@@ -25,7 +26,7 @@ const AboutSection = () => {
                 className="mx-auto max-w-6xl "
             >
                 {/* 헤더 영역 */}
-                <TitleGsap sectionRef={sectionRef} title={'About Me'} />
+                <TitleGsap sectionRef={sectionRef} title={'About Me'} description={'개발자 소개 및 연락처'} />
 
                 {/* 콘텐츠 영역 */}
 
@@ -43,7 +44,6 @@ const AboutSection = () => {
                                         className="w-full h-full object-cover"
                                     />
                                 </div>
-
                             </div>
 
                             <div>
@@ -55,8 +55,6 @@ const AboutSection = () => {
                                     새로운 기술을 배우고 적용하는 것을 좋아하며, 항상 최신 트렌드를 따라가려고 노력합니다.
                                 </p>
                             </div>
-
-
                         </div>
 
                         {/* 오른쪽: 스킬 및 학력 */}
@@ -98,64 +96,12 @@ const AboutSection = () => {
                                                 {edu.period}
                                             </div>
                                             <h4 className="text-white font-semibold text-lg">{edu.field}</h4>
-
                                             <p className="text-gray-300 mt-2">{edu.school}</p>
                                         </div>
                                     ))}
                                 </div>
                             </div>
 
-                            {/* 연락 폼 */}
-                            {/* <div className="bg-zinc-700/30 rounded-xl p-6">
-                                <h3 className="text-2xl font-bold text-white mb-6">메시지 보내기</h3>
-                                <form className="space-y-4">
-                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                        <div>
-                                            <label className="block text-gray-400 text-sm mb-2" htmlFor="name">
-                                                이름
-                                            </label>
-                                            <input
-                                                className="w-full bg-zinc-800 text-white border border-zinc-700 rounded-lg py-2 px-3 focus:outline-none focus:border-green-500"
-                                                id="name"
-                                                type="text"
-                                                placeholder="홍길동"
-                                            />
-                                        </div>
-                                        <div>
-                                            <label className="block text-gray-400 text-sm mb-2" htmlFor="email">
-                                                이메일
-                                            </label>
-                                            <input
-                                                className="w-full bg-zinc-800 text-white border border-zinc-700 rounded-lg py-2 px-3 focus:outline-none focus:border-green-500"
-                                                id="email"
-                                                type="email"
-                                                placeholder="example@email.com"
-                                            />
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <label className="block text-gray-400 text-sm mb-2" htmlFor="message">
-                                            메시지
-                                        </label>
-                                        <textarea
-                                            className="w-full bg-zinc-800 text-white border border-zinc-700 rounded-lg py-2 px-3 h-32 resize-none focus:outline-none focus:border-green-500"
-                                            id="message"
-                                            placeholder="메시지를 입력하세요..."
-                                        ></textarea>
-                                    </div>
-                                    <div className="flex justify-end">
-                                        <button
-                                            className="bg-green-500 hover:bg-green-600 text-black font-semibold py-2 px-6 rounded-lg flex items-center transition-colors duration-300"
-                                            type="submit"
-                                        >
-                                            메시지 전송
-                                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
-                                                <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
-                                            </svg>
-                                        </button>
-                                    </div>
-                                </form>
-                            </div> */}
                         </div>
                         <div>
                             <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-4">
@@ -193,7 +139,7 @@ const AboutSection = () => {
 
             {/* 푸터 */}
             <div className="bg-zinc-900 py-8 mt-16">
-                <div className="mx-auto max-w-6xl px-4 md:px-10">
+                <div className="mx-auto max-w-6xl ">
                     <div className="flex flex-col md:flex-row justify-between items-center">
                         <p className="text-gray-400 text-sm">
                             © 2025 포트폴리오. All rights reserved.

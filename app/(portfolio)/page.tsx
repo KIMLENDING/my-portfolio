@@ -1,10 +1,6 @@
-
-'use client'
-
 import MouseLight from '@/components/portfolio/layout/MouseLight'
 import MouseReversal from '@/components/portfolio/layout/MouseReversal'
 import ParticlesBG from '@/components/portfolio/layout/ParticlesBG'
-
 import SectionControl from '@/components/portfolio/sectionControl'
 
 const page = () => {

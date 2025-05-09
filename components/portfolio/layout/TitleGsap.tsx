@@ -1,11 +1,12 @@
+'use client'
 import React, { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { Anton } from 'next/font/google';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
-
 const anton = Anton({ weight: '400', subsets: ['latin'] });
-const TitleGsap = ({ sectionRef, title }: { sectionRef: React.RefObject<HTMLElement | null>, title: string }) => {
+
+const TitleGsap = ({ sectionRef, title, description }: { sectionRef: React.RefObject<HTMLElement | null>, title: string, description: string }) => {
     const titleRef = useRef(null);
     useEffect(() => {
         // 타이틀 애니메이션
@@ -39,7 +40,9 @@ const TitleGsap = ({ sectionRef, title }: { sectionRef: React.RefObject<HTMLElem
                         {title}
                     </span>
                 </h2>
-
+                <p className="text-green-400 text-lg md:text-xl  mb-8">
+                    {description}
+                </p>
             </div>
         </div>
     )

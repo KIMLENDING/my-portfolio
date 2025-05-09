@@ -21,12 +21,6 @@ const scrollContents = [
             'React Query로 서버 상태를 관리했습니다. H-Helper App 사이트에서 사용자 운동 기록을 불러오고, 자동 캐싱 및 리패칭으로 UX를 최적화한 경험이 있습니다.',
     },
     {
-        title: 'Zustand로 상태 관리',
-        icon: ['/icons/zustand.svg'],
-        content:
-            '컴포넌트 간 전역 상태 공유가 필요한 경우 React Context보다 더 단순한 Zustand를 선택해 구조를 효율적으로 관리했습니다. 특히 To-do 리스트와 순간 기억력 게임에서 데이터 흐름을 예측 가능하게 유지했습니다.',
-    },
-    {
         title: 'Tailwind CSS + Shadcn UI',
         icon: ['/icons/tailwindcss.svg', '/icons/shadcnui.svg'],
         content:
@@ -87,8 +81,9 @@ const SkillSection = () => {
         >
             <div className="max-w-6xl mx-auto relative">
                 {/* 섹션 제목 */}
-                <TitleGsap sectionRef={sectionRef} title={'Skill'} />
+                <TitleGsap sectionRef={sectionRef} title={'Skill'} description={'주로 사용하는 스킬'} />
                 {/* 스킬 그리드 */}
+
                 <div
                     ref={skillsRef}
                     className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8"

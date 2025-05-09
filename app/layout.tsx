@@ -17,8 +17,6 @@ export const metadata: Metadata = {
   description: "포트폴리오 사이트입니다.",
   keywords: ["Portfolio", "Next.js", "React", "Frontend Developer"],
   metadataBase: new URL(`${process.env.NEXTAUTH_URL}`), // 동적으로 생성된 URL
-  viewport: "width=device-width, initial-scale=1.0",
-  themeColor: "#000000",
   openGraph: {
     title: "Portfolio",
     description: "A modern portfolio built with Next.js",

@@ -1,9 +1,11 @@
+'use client'
 import React, { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ArrowRight } from 'lucide-react';
 import Image from 'next/image';
 import TitleGsap from './layout/TitleGsap';
+import Link from 'next/link';
 gsap.registerPlugin(ScrollTrigger);
 const ProjectSection = () => {
     const sectionRef = useRef(null);
@@ -13,6 +15,7 @@ const ProjectSection = () => {
 
     const scrollContents = [
         {
+            url: '/H-Helper',
             thumbnail: '/img/h-helper.png',
             project: 'H-Helper App',
             tags: ['Next.js', 'React Query', 'UI/UX Design'],
@@ -20,12 +23,14 @@ const ProjectSection = () => {
 
         },
         {
+            url: '/Moment-Memory-Game',
             thumbnail: '/img/game.png',
             project: 'Moment Memory Game',
             tags: ['GSAP', 'Animation'],
             content: '순간 기억력 게임으로, GSAP를 활용해 부드러운 애니메이션 효과를 구현했습니다.  '
         },
         {
+            url: '/Portfolio',
             thumbnail: '/img/portfolio.png',
             project: 'Portfolio Website',
             tags: ['React', 'Tailwind CSS', 'Responsive Design'],
@@ -84,7 +89,7 @@ const ProjectSection = () => {
             >
                 {/* 왼쪽 타이틀 */}
                 <div className='md:sticky md:top-24 md:self-start md:h-[calc(100vh-12rem)] flex flex-col justify-between'>
-                    <TitleGsap sectionRef={sectionRef} title={'Projects'} />
+                    <TitleGsap sectionRef={sectionRef} title={'Projects'} description={''} />
 
                     <div className="hidden md:flex flex-col space-y-6 pl-6">
                         {scrollContents.map((item, idx) => (
@@ -142,10 +147,10 @@ const ProjectSection = () => {
                                         {item.content}
                                     </p>
                                     <div className="mt-6 flex justify-end">
-                                        <button className="flex items-center gap-2 text-green-400 hover:text-green-300 transition-colors">
+                                        <Link href={item.url} className="flex items-center gap-2 text-green-400 hover:text-green-300 transition-colors">
                                             자세히 보기
                                             <ArrowRight />
-                                        </button>
+                                        </Link>
                                     </div>
                                 </div>
                             </div>
