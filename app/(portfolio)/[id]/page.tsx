@@ -7,7 +7,8 @@ const anton = Anton({ weight: '400', subsets: ['latin'] });
 const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
     const { id } = await params;
     const data = project; // 실제로는 id 기반 필터
-
+    // const data = project.find((p) => p.id === id);
+    console.log(id);
     return (
         <div className="min-h-screen w-full py-24 px-4 md:px-10 bg-zinc-900 text-white">
             <div className="mb-16 md:mb-24">
