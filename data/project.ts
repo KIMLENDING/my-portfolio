@@ -9,13 +9,38 @@ export const project = {
         v1: '2024/11/06 - 2024/12/19',
         v2: '2025/03/25 - 2025/04/30',
     },
-    features: [
-        '운동 계획 생성 및 수행 기록',
-        '세트별 중량 및 반복 수 데이터 분석',
-        '주간 운동 히스토리 차트 제공',
-        '서버 컴포넌트 기반 React Query 프리패치',
+    summary: "운동 루틴 생성부터 기록, 분석까지 지원하는 피트니스 웹앱입니다. 사용자 맞춤형 루틴과 수행 기록 기반 통계를 제공하며, SSR과 동적 import를 통한 퍼포먼스 최적화, 반응형 UI가 특징입니다.",
+    mainFeatures: [
+        "운동 루틴 생성 및 편집 (세트 수, 반복, 중량 설정)",
+        "운동 세션 기록 및 세트별 수행 정보 저장",
+        "주간 대시보드: 세션 진행률 및 완료율 시각화",
+        "운동 데이터 분석: 부위별 수행 빈도, 중량 변화 추이 등",
     ],
-    techStack: [
+    techChallenges: [
+        {
+            title: "React Query Hydration + SSR 최적화",
+            description: "서버에서 dehydrate 후 HydrationBoundary로 클라이언트 재사용 → 초기 로딩 개선 및 일관성 유지",
+        },
+        {
+            title: "동적 임포트를 통한 번들 최적화",
+            description: "Sidebar, Drawer 등을 `next/dynamic`으로 지연 로딩 → 모바일 UX 최적화",
+        },
+        {
+            title: "반응형 Drawer/Dialog 통합 구조",
+            description: "Shadcn-UI 컴포넌트를 기반으로 모바일/데스크탑에 맞는 UI 자동 전환",
+        },
+        {
+            title: "MongoDB 트랜잭션 처리",
+            description: "회원 탈퇴 시 관련 도큐먼트 일괄 삭제를 트랜잭션으로 처리 → 데이터 정합성 확보",
+        },
+    ],
+    schemaOverview: {
+        User: "이메일, 닉네임, 소셜 로그인 정보 포함. provider 조합으로 복합 인덱스 구성.",
+        Exercise: "운동 이름, 부위, 설명, 영상 URL, 태그 포함.",
+        ExercisePlan: "사용자 루틴 정의 (운동 항목 + 세트 구성).",
+        ExerciseSession: "실제 수행 기록. 세트별 reps, weight, endTime 저장. 상태 추적 필드 포함.",
+    },
+    stack: [
         'Next.js 15 (App Router)',
         'TypeScript',
         'MongoDB',
@@ -27,12 +52,7 @@ export const project = {
         'Zod',
 
     ],
-    challenges: [
-        '동적 라우팅 기반 CRUD 페이지 구조 설계',
-        '서버와 클라이언트 간 효율적인 상태 동기화',
-        '반응형 모달 및 드로어 통합 처리',
-        '운동 세트별 자동 시간 계산 로직 구현',
-    ],
+
 };
 
 const Contents = [

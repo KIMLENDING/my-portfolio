@@ -1,14 +1,13 @@
-import React from 'react'
-import { Anton } from 'next/font/google';
-import { project } from '@/data/project';
-const anton = Anton({ weight: '400', subsets: ['latin'] });
-
+import React from "react";
+import { Anton } from "next/font/google";
+import { project } from "@/data/project";
+const anton = Anton({ weight: "400", subsets: ["latin"] });
 
 const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
     const { id } = await params;
-    const data = project; // 실제로는 id 기반 필터
-    // const data = project.find((p) => p.id === id);
+    const data = project; // 실제 사용 시: const data = project.find((p) => p.id === id);
     console.log(id);
+
     return (
         <div className="min-h-screen w-full py-24 px-4 md:px-10 bg-zinc-900 text-white">
             <div className="mb-16 md:mb-24">
@@ -17,7 +16,7 @@ const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
                         {data.title}
                     </span>
                 </h2>
-                <p className="mt-4 text-lg text-zinc-300 max-w-3xl">{data.description}</p>
+                <p className="mt-4 text-lg text-zinc-300 max-w-3xl">{data.summary}</p>
             </div>
 
             <div className="mx-auto max-w-6xl grid grid-cols-1 md:grid-cols-2 gap-12">
@@ -31,7 +30,7 @@ const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
 
                     <Section title="⚙️ 사용 기술">
                         <ul className="flex flex-wrap gap-2 text-sm">
-                            {data.techStack.map((tech) => (
+                            {data.stack.map((tech) => (
                                 <li key={tech} className="bg-zinc-800 rounded px-2 py-1">
                                     {tech}
                                 </li>
@@ -40,9 +39,11 @@ const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
                     </Section>
 
                     <Section title="🧠 기술적 도전">
-                        <ul className="list-disc pl-5 text-sm space-y-1">
-                            {data.challenges.map((c, i) => (
-                                <li key={i}>{c}</li>
+                        <ul className="list-disc pl-5 text-sm space-y-2">
+                            {data.techChallenges.map((c, i) => (
+                                <li key={i}>
+                                    <span className="font-semibold">{c.title}:</span> {c.description}
+                                </li>
                             ))}
                         </ul>
                     </Section>
@@ -68,8 +69,18 @@ const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
                 <div>
                     <Section title="✨ 주요 기능">
                         <ul className="list-disc pl-5 text-sm space-y-1">
-                            {data.features.map((f, i) => (
+                            {data.mainFeatures.map((f, i) => (
                                 <li key={i}>{f}</li>
+                            ))}
+                        </ul>
+                    </Section>
+
+                    <Section title="📁 스키마 개요">
+                        <ul className="list-disc pl-5 text-sm space-y-1">
+                            {Object.entries(data.schemaOverview).map(([model, desc]) => (
+                                <li key={model}>
+                                    <span className="font-semibold">{model}</span>: {desc}
+                                </li>
                             ))}
                         </ul>
                     </Section>
