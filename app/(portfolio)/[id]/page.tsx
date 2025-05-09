@@ -5,8 +5,11 @@ const anton = Anton({ weight: "400", subsets: ["latin"] });
 
 const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
     const { id } = await params;
-    const data = project; // 실제 사용 시: const data = project.find((p) => p.id === id);
-    console.log(id);
+    const data = project.find((p) => p.id === id);
+    if (!data) {
+        return <div className="text-center text-red-500">Project not found</div>;
+    }
+
 
     return (
         <div className="min-h-screen w-full py-24 px-4 md:px-10 bg-zinc-900 text-white">
@@ -24,7 +27,7 @@ const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
                     <Section title="📌 개발 기간">
                         <ul className="text-sm">
                             <li>v1: {data.period.v1}</li>
-                            <li>v2: {data.period.v2}</li>
+                            {data.period.v2 && <li>v2: {data.period.v2}</li>}
                         </ul>
                     </Section>
 
@@ -38,7 +41,7 @@ const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
                         </ul>
                     </Section>
 
-                    <Section title="🧠 기술적 도전">
+                    <Section title=" 기술적 도전">
                         <ul className="list-disc pl-5 text-sm space-y-2">
                             {data.techChallenges.map((c, i) => (
                                 <li key={i}>
@@ -66,7 +69,7 @@ const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
                     </div>
                 </div>
 
-                <div>
+                <div className="space-y-6">
                     <Section title="✨ 주요 기능">
                         <ul className="list-disc pl-5 text-sm space-y-1">
                             {data.mainFeatures.map((f, i) => (
