@@ -30,7 +30,7 @@ const ProjectSection = () => {
             content: '순간 기억력 게임으로, GSAP를 활용해 부드러운 애니메이션 효과를 구현했습니다.  '
         },
         {
-            url: '/Portfolio',
+            url: '/Portfolio-Website',
             thumbnail: '/img/portfolio.png',
             project: 'Portfolio Website',
             tags: ['React', 'Tailwind CSS', 'Responsive Design'],
