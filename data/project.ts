@@ -50,9 +50,58 @@ export const project = [{
         'Vercel',
         'NextAuth.js',
         'Zod',
-
     ],
 
+},
+{
+    id: 'Portfolio-Website',
+    title: 'Portfolio-Website',
+    githubLink: 'https://github.com/KIMLENDING/my-portfolio',
+    vercelLink: 'https://my-portfolio-kimlendings-projects.vercel.app/',
+    description: '프론트엔드 개발자로서의 역량과 프로젝트를 소개하기 위한 포트폴리오 웹사이트입니다. 사용자 경험을 중시하는 인터랙티브한 웹 경험을 제공합니다.',
+    period: {
+        v1: '2025/04/01 - 2025/05/10',
+    },
+    summary: "프론트엔드 개발자 포트폴리오 웹사이트로, GSAP를 활용한 인터랙티브한 애니메이션과 시각적 요소들이 특징입니다. 마우스 인터랙션, 파티클 배경, 스무스 스크롤 등을 통해 몰입도 높은 사용자 경험을 제공합니다.",
+    mainFeatures: [
+        "인터랙티브한 히어로 섹션: GSAP를 활용한 텍스트 애니메이션과 타이밍 효과",
+        "마우스 인터랙션: 마우스 움직임에 반응하는 라이트 이펙트와 요소 반전 효과",
+        "파티클 배경: 동적인 배경 효과로 시각적 경험 향상",
+        "프로젝트 쇼케이스: 개발한 프로젝트들의 상세 정보를 소개",
+        "스킬 섹션: 기술 스택과 개발 역량을 시각적으로 표현"
+    ],
+    techChallenges: [
+        {
+            title: "GSAP 애니메이션 최적화",
+            description: "텍스트 애니메이션과 스크롤 기반 효과를 효율적으로 구현하여 부드러운 전환 경험 제공",
+        },
+        {
+            title: "마우스 인터랙션 효과 구현",
+            description: "커스텀 훅과 이벤트 리스너를 활용하여 마우스 포인터를 따라다니는 라이트 효과와 반전 효과 구현",
+        },
+        {
+            title: "Lenis 스크롤 라이브러리 적용",
+            description: "부드러운 스크롤 경험을 위해 Lenis 라이브러리를 활용하여 스크롤 성능 최적화",
+        },
+        {
+            title: "파티클 배경 구현",
+            description: "`@tsparticles/react` 라이브러리를 활용하여 동적인 파티클 배경을 구현했습니다. 커스텀 설정을 통해 파티클의 크기, 속도, 색상 등을 조정하여 원하는 시각적 효과를 제공했습니다.",
+        },
+        {
+            title: "반응형 레이아웃 설계",
+            description: "TailwindCSS를 활용한 다양한 화면 크기에 최적화된 레이아웃으로 모바일부터 데스크탑까지 일관된 경험 제공",
+        },
+    ],
+
+    stack: [
+        'Next.js (App Router)',
+        'TypeScript',
+        'TailwindCSS',
+        'GSAP',
+        'Lenis',
+        'Shadcn-UI',
+        'Vercel'
+    ],
 },
 {
     id: 'Moment-Memory-Game',
@@ -110,10 +159,3 @@ export const project = [{
 
 ]
 
-const Contents = [
-    {
-        githubLink: 'https://github.com/KIMLENDING/my-portfolio',
-        vercelLink: 'https://my-portfolio-kimlendings-projects.vercel.app/',
-        title: 'Portfolio-Website',
-    },
-]

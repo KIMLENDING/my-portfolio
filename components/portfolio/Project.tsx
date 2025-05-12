@@ -26,14 +26,14 @@ const ProjectSection = () => {
             url: '/Moment-Memory-Game',
             thumbnail: '/img/game.png',
             project: 'Moment Memory Game',
-            tags: ['GSAP', 'Animation'],
+            tags: ['GSAP', 'Animation', 'Zustand'],
             content: '순간 기억력 게임으로, GSAP를 활용해 부드러운 애니메이션 효과를 구현했습니다.  '
         },
         {
             url: '/Portfolio-Website',
             thumbnail: '/img/portfolio.png',
             project: 'Portfolio Website',
-            tags: ['React', 'Tailwind CSS', 'Responsive Design'],
+            tags: ['React', 'Responsive Design', 'GSAP', 'Lenis'],
             content: '개인 포트폴리오 웹사이트로, React와 Tailwind CSS를 활용해 반응형 디자인을 구현했습니다. 모던한 UI와 부드러운 애니메이션으로 사용자 경험을 개선했습니다.'
         },
     ];

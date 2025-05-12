@@ -78,15 +78,20 @@ const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
                         </ul>
                     </Section>
 
-                    <Section title="📁 스키마 개요">
-                        <ul className="list-disc pl-5 text-sm space-y-1">
-                            {Object.entries(data.schemaOverview).map(([model, desc]) => (
-                                <li key={model}>
-                                    <span className="font-semibold">{model}</span>: {desc}
-                                </li>
-                            ))}
-                        </ul>
-                    </Section>
+                    {data.schemaOverview && (
+                        <Section title="📁 스키마 개요">
+                            <ul className="list-disc pl-5 text-sm space-y-1">
+                                {Object.entries(data.schemaOverview).map(([model, desc]) => (
+                                    <li key={model}>
+                                        <span className="font-semibold">{model}</span>: {desc}
+                                    </li>
+                                ))}
+                            </ul>
+                        </Section>
+                    )
+
+                    }
+
                 </div>
             </div>
         </div>
