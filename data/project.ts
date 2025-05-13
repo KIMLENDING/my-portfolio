@@ -60,7 +60,7 @@ export const project = [{
     vercelLink: 'https://my-portfolio-kimlendings-projects.vercel.app/',
     description: '프론트엔드 개발자로서의 역량과 프로젝트를 소개하기 위한 포트폴리오 웹사이트입니다. 사용자 경험을 중시하는 인터랙티브한 웹 경험을 제공합니다.',
     period: {
-        v1: '2025/04/01 - 2025/05/10',
+        v1: '2025/03/25 - 2025/05/10',
     },
     summary: "프론트엔드 개발자 포트폴리오 웹사이트로, GSAP를 활용한 인터랙티브한 애니메이션과 시각적 요소들이 특징입니다. 마우스 인터랙션, 파티클 배경, 스무스 스크롤 등을 통해 몰입도 높은 사용자 경험을 제공합니다.",
     mainFeatures: [
