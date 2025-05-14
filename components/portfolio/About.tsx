@@ -20,6 +20,14 @@ const AboutSection = () => {
         },
     ];
 
+    const experiences = [
+        {
+            title: "한라대학교 알고리즘 스터디 그룹",
+            period: "2022.08 - 2023.10",
+            description: "자료구조에서 배운 알고리즘을 백준(BaekJoon)사이트에서 195개의 문제를 통해 학습했던 내용을 적용해보며 알고리즘에 대한 사고력을 기를 수 있었습니다.",
+        }
+    ]
+
     return (
         <section ref={sectionRef} id='about' className='min-h-screen w-full py-24 px-4 md:px-10 bg-zinc-900'>
             <div
@@ -34,17 +42,7 @@ const AboutSection = () => {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20">
                         {/* 왼쪽: 개인 소개 */}
                         <div className="space-y-8">
-                            <div className="relative">
-                                <div className="aspect-square bg-zinc-700 rounded-2xl overflow-hidden">
-                                    <Image
-                                        width={500}
-                                        height={500}
-                                        src="/img/starrail.webp"
-                                        alt="Profile"
-                                        className="w-full h-full object-cover"
-                                    />
-                                </div>
-                            </div>
+
 
                             <div>
                                 <h3 className="text-3xl font-bold text-white mb-4">김계관</h3>
@@ -55,10 +53,6 @@ const AboutSection = () => {
                                     새로운 기술을 배우고 적용하는 것을 좋아하며, 항상 최신 트렌드를 따라가려고 노력합니다.
                                 </p>
                             </div>
-                        </div>
-
-                        {/* 오른쪽: 스킬 및 학력 */}
-                        <div className="space-y-12">
                             {/* 스킬 */}
                             <div>
                                 <h3 className="text-2xl font-bold text-white gap-4 mb-6 flex items-center">
@@ -81,7 +75,22 @@ const AboutSection = () => {
                                     ))}
                                 </div>
                             </div>
+                        </div>
 
+                        {/* 오른쪽: 스킬 및 학력 */}
+                        <div className="space-y-12">
+
+                            {/* <div className="relative h-64">
+                                <div className="aspect-square bg-zinc-700  overflow-hidden rounded-full  h-64">
+                                    <Image
+                                        width={250}
+                                        height={250}
+                                        src="/img/증명사진.jpg"
+                                        alt="Profile"
+                                        className=" object-cover "
+                                    />
+                                </div>
+                            </div> */}
                             {/* 학력 */}
                             <div>
                                 <h3 className="text-2xl font-bold text-white mb-6 gap-4 flex items-center">
@@ -101,6 +110,25 @@ const AboutSection = () => {
                                     ))}
                                 </div>
                             </div>
+                            {/*경험/활동/교육 */}
+                            <div>
+                                <h3 className="text-2xl font-bold text-white mb-6 gap-4 flex items-center">
+                                    <GraduationCap className="  text-green-400" />
+                                    경험/활동/교육
+                                </h3>
+
+                                <div className="space-y-6">
+                                    {experiences.map((exp, index) => (
+                                        <div key={index} className="bg-zinc-700/50 rounded-lg p-5 relative">
+                                            <div className="absolute top-0 right-0 bg-green-500 text-black text-xs font-medium px-3 py-1 rounded-bl-lg rounded-tr-lg">
+                                                {exp.period}
+                                            </div>
+                                            <h4 className="text-white font-semibold text-lg">{exp.title}</h4>
+                                            <p className="text-gray-300 mt-2">{exp.description}</p>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
 
                         </div>
                         <div>
@@ -108,7 +136,7 @@ const AboutSection = () => {
                                 <MapPinCheck className='text-green-400' />
                                 위치
                             </h3>
-                            <p className="text-gray-300 ml-7">원주시, 대한민국</p>
+                            <p className="text-gray-300 ml-7">강원도 원주시, 대한민국</p>
                         </div>
 
                         <div className="space-y-4">
