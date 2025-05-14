@@ -72,7 +72,7 @@ const AboutSection = () => {
                                             <h4 className="text-green-400 font-semibold mb-3">{skillGroup.category}</h4>
                                             <div className="flex flex-wrap gap-2">
                                                 {skillGroup.items.map((skill, idx) => (
-                                                    <span key={idx} className="px-3 py-1 bg-zinc-800 text-gray-300 text-sm rounded-md">
+                                                    <span key={idx} className="px-3 py-1 bg-zinc-800 text-gray-300 text-sm rounded-md hover:bg-green-500 hover:text-zinc-700 transition-colors">
                                                         {skill}
                                                     </span>
                                                 ))}
@@ -142,7 +142,7 @@ const AboutSection = () => {
                 <div className="mx-auto max-w-6xl ">
                     <div className="flex flex-col md:flex-row justify-between items-center">
                         <p className="text-gray-400 text-sm">
-                            © 2025 포트폴리오. All rights reserved.
+                            © 2025 KimLending 포트폴리오. All rights reserved.
                         </p>
                         <div className="mt-4 md:mt-0">
                             <p className="text-gray-400 text-sm">
