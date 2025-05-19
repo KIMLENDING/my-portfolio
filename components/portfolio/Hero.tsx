@@ -1,18 +1,86 @@
 'use client'
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useCallback } from 'react'
 import { gsap } from 'gsap'
 import { Doto } from 'next/font/google';
 import Link from 'next/link';
 
 const doto = Doto({ weight: ['600', '800'], subsets: ['latin'] });
+
+// 상수로 분리하여 재사용성 높이기
+const LETTER_STYLE = { fontSize: 'clamp(1rem, 12vw, 20vh)' };
+const GREEN_COLORS = {
+    t1: '#00ff00',   // Green
+    t2: '#32cd32',   // LimeGreen
+    t3: '#3cb371',   // MediumSeaGreen
+    t4: '#2e8b57',   // SeaGreen
+    t5: '#228b22',   // ForestGreen
+    t6: '#006400',   // DarkGreen
+    t7: '#00ff7f',   // SpringGreen
+    t8: '#00fa9a',   // MediumSpringGreen
+    t9: '#7fff00'    // Chartreuse
+};
+
 const HeroSection = () => {
     const devRef = useRef<HTMLDivElement>(null);
     const textRefs = useRef<(HTMLParagraphElement | null)[]>([]);
+
+    // 반복되는 코드를 함수화
+    const createFrontendAnimation = useCallback((timeline: gsap.core.Timeline, vh: number) => {
+        // 홀수 인덱스 애니메이션 (f,o,t,E,d)
+        const oddIndices = [1, 3, 5, 7, 9];
+        oddIndices.forEach((idx, i) => {
+            const yTarget = idx === 7 ? 5 : 0; // 특수 케이스 t7
+            timeline.fromTo(`#t${idx}`,
+                { yPercent: 50, opacity: 0 },
+                { yPercent: yTarget, opacity: 1, y: 0, duration: 0.5, delay: i === 0 ? 0.2 : 0 },
+                i === 0 ? undefined : '-=0.5'
+            );
+        });
+
+        // 짝수 인덱스 애니메이션 (r,n,-,n)
+        const evenIndices = [2, 4, 6, 8];
+        evenIndices.forEach((idx, i) => {
+            timeline.fromTo(`#t${idx}`,
+                { y: vh / 2, opacity: 0 },
+                { yPercent: 10, opacity: 1, duration: 0.5, delay: i === 0 ? 0.5 : 0 },
+                '-=0.5'
+            );
+        });
+
+        // 커튼 열기
+        timeline.to('#커튼', { yPercent: -100, duration: 0.8, delay: 0.5 });
+
+        // 짝수 요소 추가 애니메이션
+        evenIndices.forEach((idx, i) => {
+            const yTarget = idx === 4 ? -10 : 10; // 특수 케이스 t4
+            if (idx === 2) {
+                timeline.to(`#t${idx}`, { yPercent: 0, opacity: 1, y: 0, duration: 0.5 }, '-=0.8');
+            } else {
+                timeline.to(`#t${idx}`, { yPercent: yTarget, opacity: 1, y: 0, duration: 0.5 }, '-=0.8');
+            }
+        });
+
+        // 텍스트 컬러 변경 (흰색으로)
+        for (let i = 1; i <= 9; i++) {
+            const position = i === 1 ? '-=0.4' : '-=0.5';
+            timeline.to(`#t${i}`, { duration: 0.5, color: '#ffffff' }, position);
+        }
+
+        // 텍스트 컬러 변경 (그린으로)
+        for (let i = 1; i <= 9; i++) {
+            const position = '-=0.4';
+            const delay = i === 1 ? 0.5 : 0;
+            timeline.to(`#t${i}`, { duration: 0.5, color: GREEN_COLORS[`t${i}` as keyof typeof GREEN_COLORS], delay }, position);
+        }
+
+        return timeline;
+    }, []);
+
     useEffect(() => {
-        // 화면의 높이
-        const vh = window.innerHeight;
+        const vh = window.innerHeight; // 뷰포트 높이
+
         // 애니메이션을 실행하기 위해 DOM이 로드되었을 때 실행
-        gsap.timeline({
+        const mainTimeline = gsap.timeline({
             onComplete: () => {
                 const devSpan = devRef.current?.querySelectorAll('span');
                 if (!devSpan) return;
@@ -21,46 +89,12 @@ const HeroSection = () => {
                     .fromTo(devSpanArray, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.8, ease: 'power2.out', stagger: 0.1 })
                     .fromTo(devSpan[devSpan.length - 1], { opacity: 0, y: 10 }, { opacity: 1, y: -20, duration: 0.8, repeat: -1, yoyo: true, ease: 'power2.out' });
             },
-        })
-            // f,r,o,n,t,-,e,n,d 애니메이션
-            .fromTo("#t1", { yPercent: 50, opacity: 0 }, { yPercent: 0, opacity: 1, y: 0, duration: 0.5, delay: 0.2 })
-            .fromTo("#t3", { yPercent: 50, opacity: 0 }, { yPercent: 0, opacity: 1, y: 0, duration: 0.5 }, '-=0.5')
-            .fromTo("#t5", { yPercent: 50, opacity: 0 }, { yPercent: 0, opacity: 1, y: 0, duration: 0.5 }, '-=0.5')
-            .fromTo("#t7", { yPercent: 50, opacity: 0 }, { yPercent: 5, opacity: 1, y: 0, duration: 0.5 }, '-=0.5')
-            .fromTo("#t9", { yPercent: 50, opacity: 0 }, { yPercent: 0, opacity: 1, y: 0, duration: 0.5 }, '-=0.5')
-            .fromTo("#t2", { y: vh / 2, opacity: 0 }, { yPercent: 10, opacity: 1, duration: 0.5, delay: 0.5 }, '-=0.5')
-            .fromTo("#t4", { y: vh / 2, opacity: 0 }, { yPercent: 10, opacity: 1, duration: 0.5 }, '-=0.5')
-            .fromTo("#t6", { y: vh / 2, opacity: 0 }, { yPercent: 10, opacity: 1, duration: 0.5 }, '-=0.5')
-            .fromTo("#t8", { y: vh / 2, opacity: 0 }, { yPercent: 10, opacity: 1, duration: 0.5 }, '-=0.5')
-            // 커튼 열기
-            .to('#커튼', { yPercent: -100, duration: 0.8, delay: 0.5 })
-            // r,n,-,n 애니메이션션
-            .to("#t2", { yPercent: 0, opacity: 1, y: 0, duration: 0.5 }, '-=0.8')
-            .to("#t4", { yPercent: -10, opacity: 1, y: 0, duration: 0.5 }, '-=0.8')
-            .to("#t6", { yPercent: 10, opacity: 1, y: 0, duration: 0.5 }, '-=0.8')
-            .to("#t8", { yPercent: 10, opacity: 1, y: 0, duration: 0.5 }, '-=0.8')
-            // 텍스트 컬러 변경 흰색으로로
-            .to("#t1", { duration: 0.5, color: '#ffffff' }, '-=0.4')
-            .to("#t2", { duration: 0.5, color: '#ffffff' }, '-=0.5')
-            .to("#t3", { duration: 0.5, color: '#ffffff' }, '-=0.5')
-            .to("#t4", { duration: 0.5, color: '#ffffff' }, '-=0.5')
-            .to("#t5", { duration: 0.5, color: '#ffffff' }, '-=0.5')
-            .to("#t6", { duration: 0.5, color: '#ffffff' }, '-=0.5')
-            .to("#t7", { duration: 0.5, color: '#ffffff' }, '-=0.5')
-            .to("#t8", { duration: 0.5, color: '#ffffff' }, '-=0.5')
-            .to("#t9", { duration: 0.5, color: '#ffffff' }, '-=0.5')
-            // 텍스트 컬러 변경 그린으로
-            .to("#t1", { duration: 0.5, color: '#00ff00', delay: 0.5 }, '-=0.4') // Green
-            .to("#t2", { duration: 0.5, color: '#32cd32' }, '-=0.4') // LimeGreen
-            .to("#t3", { duration: 0.5, color: '#3cb371' }, '-=0.4') // MediumSeaGreen
-            .to("#t4", { duration: 0.5, color: '#2e8b57' }, '-=0.4') // SeaGreen
-            .to("#t5", { duration: 0.5, color: '#228b22' }, '-=0.4') // ForestGreen
-            .to("#t6", { duration: 0.5, color: '#006400' }, '-=0.4') // DarkGreen
-            .to("#t7", { duration: 0.5, color: '#00ff7f' }, '-=0.4') // SpringGreen
-            .to("#t8", { duration: 0.5, color: '#00fa9a' }, '-=0.4') // MediumSpringGreen
-            .to("#t9", { duration: 0.5, color: '#7fff00' }, '-=0.4') // Chartreuse
+        });
 
-    }, []);
+        // 함수를 호출하여 애니메이션 생성
+        createFrontendAnimation(mainTimeline, vh);
+
+    }, [createFrontendAnimation]);
 
     useEffect(() => {
         // 텍스트 애니메이션 (위로 올라가고 사라지기 아래에서 나타나기기) 반복
@@ -95,24 +129,41 @@ const HeroSection = () => {
 
     return (
         <section id='hero' className='w-full min-h-screen relative flex flex-col items-center text-black transparent pointer-events-none '>
-            <div id='커튼' className='absolute top-0 left-0 flex flex-col w-full min-h-screen bg-green-500 ' />
-            <div className="mt-20 flex justify-center w-full gap-2 md:gap-4 px-4 ">
-                <span id="t1" className={`font-semibold ${doto.className}`} style={{ fontSize: 'clamp(1rem, 12vw, 20vh)', }}>F</span>
-                <span id="t2" className={`font-semibold ${doto.className}`} style={{ fontSize: 'clamp(1rem, 12vw, 20vh)', }}>r</span>
-                <span id="t3" className={`font-semibold ${doto.className}`} style={{ fontSize: 'clamp(1rem, 12vw, 20vh)', }}>o</span>
-                <span id="t4" className={`font-semibold ${doto.className}`} style={{ fontSize: 'clamp(1rem, 12vw, 20vh)', }}>n</span>
-                <span id="t5" className={`font-semibold ${doto.className} `} style={{ fontSize: 'clamp(1rem, 12vw, 20vh)', }}>t</span>
-                <span id="t6" className={`font-semibold ${doto.className}`} style={{ fontSize: 'clamp(1rem, 12vw, 20vh)', }}>-</span>
-                <div id="t7" className='flex flex-col  relative opacity-0'>
-                    <span className={`font-semibold ${doto.className} `} style={{ fontSize: 'clamp(1rem, 12vw, 20vh)', }}>E</span>
-                    <div ref={devRef} id='dev' className={`flex flex-row  absolute left-0 -bottom-4 sm:-bottom-10 font-semibold  ${doto.className} text-yellow-50 text-center `} style={{ fontSize: 'clamp(0.5rem, 5vw, 8vh)' }} >
+            <div id='커튼' className='absolute top-0 left-0 flex flex-col w-full min-h-screen bg-green-500 ' />            <div className="mt-20 flex justify-center w-full gap-2 md:gap-4 px-4 ">
+                {/* 문자 배열로 효율적으로 렌더링 */}
+                {['F', 'r', 'o', 'n', 't', '-'].map((char, i) => (
+                    <span
+                        key={`letter-${i + 1}`}
+                        id={`t${i + 1}`}
+                        className={`font-semibold ${doto.className}`}
+                        style={LETTER_STYLE}
+                    >
+                        {char}
+                    </span>
+                ))}
+                <div id="t7" className='flex flex-col relative opacity-0'>
+                    <span className={`font-semibold ${doto.className}`} style={LETTER_STYLE}>E</span>
+                    <div
+                        ref={devRef}
+                        id='dev'
+                        className={`flex flex-row absolute left-0 -bottom-4 sm:-bottom-10 font-semibold ${doto.className} text-yellow-50 text-center`}
+                        style={{ fontSize: 'clamp(0.5rem, 5vw, 8vh)' }}
+                    >
                         {[...'developer!'].map((char, index) => (
                             <span key={index} className="inline-block opacity-0">{char}</span>
                         ))}
                     </div>
                 </div>
-                <span id="t8" className={`font-semibold ${doto.className}`} style={{ fontSize: 'clamp(1rem, 12vw, 20vh)', }}>n</span>
-                <span id="t9" className={`font-semibold ${doto.className}`} style={{ fontSize: 'clamp(1rem, 12vw, 20vh)', }}>d</span>
+                {['n', 'd'].map((char, i) => (
+                    <span
+                        key={`letter-${i + 8}`}
+                        id={`t${i + 8}`}
+                        className={`font-semibold ${doto.className}`}
+                        style={LETTER_STYLE}
+                    >
+                        {char}
+                    </span>
+                ))}
             </div>
             <div className='relative mt-4 sm:mt-10 p-4 w-full h-full flex-[2] md:flex-1  flex flex-col items-center justify-center  text-white pointer-events-none'>
                 <p ref={(el) => { textRefs.current[0] = el }} className="absolute  px-4 opacity-0   sm:leading-14 leading-relaxed break-keep" style={{ fontSize: 'clamp(1.4rem, 3vw, 2.3vh)', }} >
