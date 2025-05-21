@@ -51,7 +51,7 @@ const HeroSection = () => {
         timeline.to('#커튼', { yPercent: -100, duration: 0.8, delay: 0.5 });
 
         // 짝수 요소 추가 애니메이션
-        evenIndices.forEach((idx, i) => {
+        evenIndices.forEach((idx) => {
             const yTarget = idx === 4 ? -10 : 10; // 특수 케이스 t4
             if (idx === 2) {
                 timeline.to(`#t${idx}`, { yPercent: 0, opacity: 1, y: 0, duration: 0.5 }, '-=0.8');
