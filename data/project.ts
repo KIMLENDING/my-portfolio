@@ -154,7 +154,7 @@ export const project = [{
         GameSession: '게임 세션 정보 (이름, 점수, 레벨, 시간)',
     },
     githubLink: 'https://github.com/KIMLENDING/memory-game',
-    vercelLink: 'https://memory-game-lyart-phi.vercel.app/',
+    vercelLink: 'https://memory-game-ashy-six.vercel.app/',
 }
 
 ]
