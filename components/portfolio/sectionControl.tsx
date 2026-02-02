@@ -8,7 +8,7 @@ import ExperienceSection from './Experience'
 
 const SectionControl = () => {
     return (
-        <div className='relative w-screen h-fittext-white  '>
+        <div className='relative w-screen h-fit text-white '>
             <HeroSection />
             <SkillSection />
             <ProjectSection />

@@ -155,7 +155,7 @@ const ParticlesBG = () => {
 
     if (init) {
         return (
-            <div className="fixed top-0 w-full min-h-screen -z-0 ">
+            <div className="fixed top-0 left-0 right-0 min-h-screen -z-0 ">
                 <div className="absolute top-0 w-full h-full transition-all bg-black" />
                 <Particles
                     id="tsparticles"
