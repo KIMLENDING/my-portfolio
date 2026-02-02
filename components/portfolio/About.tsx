@@ -1,7 +1,8 @@
 'use client'
-import { Book, Github, GraduationCap, Instagram, Mail, MapPinCheck, PhoneCall } from 'lucide-react';
+import { Book, Briefcase, Github, GraduationCap, Instagram, Mail, MapPinCheck, PhoneCall } from 'lucide-react';
 import React, { useRef } from 'react';
 import TitleGsap from './layout/TitleGsap';
+import { workExperiences } from '@/data/project';
 // import Image from 'next/image';
 const AboutSection = () => {
     const sectionRef = useRef(null);
@@ -110,10 +111,31 @@ const AboutSection = () => {
                                     ))}
                                 </div>
                             </div>
+                            {/* 직장 경력 */}
+                            <div>
+                                <h3 className="text-2xl font-bold text-white mb-6 gap-4 flex items-center">
+                                    <Briefcase className="text-green-400" />
+                                    직장 경력
+                                </h3>
+
+                                <div className="space-y-6">
+                                    {workExperiences.map((work, index) => (
+                                        <div key={index} className="bg-zinc-700/50 rounded-lg p-5 relative">
+                                            <div className="absolute top-0 right-0 bg-green-500 text-black text-xs font-medium px-3 py-1 rounded-bl-lg rounded-tr-lg">
+                                                {work.period}
+                                            </div>
+                                            <h4 className="text-white font-semibold text-lg">{work.company}</h4>
+                                            <p className="text-green-400 text-sm mt-1">{work.role}</p>
+                                            <p className="text-gray-300 mt-2 text-sm">{work.summary}</p>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+
                             {/*경험/활동/교육 */}
                             <div>
                                 <h3 className="text-2xl font-bold text-white mb-6 gap-4 flex items-center">
-                                    <GraduationCap className="  text-green-400" />
+                                    <GraduationCap className="text-green-400" />
                                     경험/활동/교육
                                 </h3>
 
