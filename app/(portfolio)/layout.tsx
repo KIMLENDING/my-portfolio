@@ -10,7 +10,7 @@ import SmoothScroll from "@/hooks/SmoothScroll";
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
     const pathname = usePathname();
-    const sections = ['hero', "skill", "project", "about"];
+    const sections = ['hero', "skill", "project", "experience", "about"];
     const [activeSection, setActiveSection] = useState("hero");
     const [menuOpen, setMenuOpen] = useState(false);
     const navRef = useRef<HTMLDivElement>(null);
@@ -101,7 +101,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
                     {sections.map((section, index) => (
                         <a
                             key={section}
-                            href={`#${section}`}
+                            href={`/#${section}`}
                             className={`relative transition-colors duration-300 text-xl px-4 py-2 rounded-full ${pathname === "/" && activeSection === section
                                 ? "text-[#00ff00]"
                                 : "hover:text-white"
@@ -132,7 +132,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
                     {sections.map((section, index) => (
                         <a
                             key={section}
-                            href={`#${section}`}
+                            href={`/#${section}`}
                             className={`text-xl font-bold transition-colors duration-300 rounded-full px-4 pb-1 "${pathname === "/" && activeSection === section
                                 ? " bg-[#228b22]/60 text-[#00ff00]"
                                 : " hover:text-white"

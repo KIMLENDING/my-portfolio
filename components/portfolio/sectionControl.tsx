@@ -4,6 +4,7 @@ import SkillSection from './Skill'
 import ProjectSection from './Project'
 import HeroSection from './Hero'
 import AboutSection from './About'
+import ExperienceSection from './Experience'
 
 const SectionControl = () => {
     return (
@@ -11,6 +12,7 @@ const SectionControl = () => {
             <HeroSection />
             <SkillSection />
             <ProjectSection />
+            <ExperienceSection />
             <AboutSection />
         </div>
     )

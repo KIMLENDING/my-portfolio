@@ -159,3 +159,145 @@ export const project = [{
 
 ]
 
+export const workExperiences = [
+    {
+        id: 'quantus',
+        company: '퀀터스테크놀로지스',
+        role: 'Frontend Engineer',
+        period: '2025.08.26 - 2026.01.31',
+        environment: [
+            'WebView 기반 모바일 앱(iOS, Android)',
+            'React Native(iOS, Android)',
+        ],
+        summary:
+            'WebView 기반 서비스와 React Native 앱에서 프론트엔드 개발을 담당하며, 플랫폼별 렌더링/성능 이슈를 분석하고 해결했습니다.',
+        responsibilities: [
+            'WebView 환경 프론트엔드 개발 및 유지보수',
+            '애니메이션, 인터랙션 UI 구현',
+            'iOS / Android 플랫폼 간 UI 및 동작 차이 대응',
+        ],
+        techStack: [
+            'React',
+            'Next.js',
+            'TypeScript',
+            'TailwindCSS',
+            'React Native',
+        ],
+        relatedCaseStudies: [
+            'webview-marquee-speed-issue',
+            'html2canvas-ios-text-blur',
+        ],
+    },
+];
+
+
+
+export const caseStudies = [
+    {
+        id: 'html2canvas-ios-text-blur',
+        title: 'iOS WebView에서 html2canvas 텍스트 화질 저하 이슈 해결',
+        context: {
+            company: '퀀터스테크놀로지스',
+            role: 'Frontend Developer',
+            platform: ['iOS WebView', 'Android WebView'],
+        },
+        situation:
+            '웹뷰 기반 앱에서 html2canvas를 이용해 특정 HTML 영역을 이미지로 캡쳐하여 저장 및 공유하는 기능을 개발했습니다.',
+        problem: [
+            'Android에서는 정상 동작',
+            'iOS 실제 기기(TestFlight)에서 캡쳐 이미지의 텍스트만 깨짐',
+            'iOS 시뮬레이터 및 로컬 개발 환경에서는 재현되지 않음',
+        ],
+        hypothesis: [
+            'iOS WebView 렌더링 방식 차이',
+            '해상도(scale) 문제',
+            '폰트 로딩 또는 렌더링 타이밍 문제',
+        ],
+        investigation: [
+            '시뮬레이터 vs TestFlight 결과 이미지 비교',
+            '아이콘은 선명하고 텍스트만 깨지는 현상 확인',
+            '렌더링 결과물 자체의 문제로 판단',
+            'iOS / Android WebView 차이 조사',
+        ],
+        rootCause:
+            '폰트 로딩 방식(display: swap)으로 인해 캡쳐 시점에 fallback 폰트가 렌더링된 상태에서 이미지가 생성됨',
+        solution: [
+            '웹폰트 설정에서 font-display를 swap → block으로 변경',
+            '폰트가 완전히 로드된 이후에만 캡쳐되도록 보장',
+        ],
+        result: [
+            'iOS 실제 기기 환경에서 텍스트 화질 문제 해결',
+            'Android / iOS 결과 이미지 일관성 확보',
+        ],
+        takeaways: [
+            '시뮬레이터와 실제 배포 환경은 다를 수 있다',
+            '렌더링 타이밍은 캡쳐 로직에서 매우 중요하다',
+            '폰트 로딩 전략이 UX뿐 아니라 기능 품질에도 영향을 준다',
+        ],
+        techStack: [
+            'html2canvas',
+            'iOS WKWebView',
+            'Android WebView',
+            'Web Font',
+        ],
+    },
+    {
+        id: 'webview-marquee-speed-issue',
+        title: 'WebView 환경에서 마퀴 애니메이션 속도가 달랐던 문제 해결',
+        context: {
+            company: '퀀터스테크놀로지스',
+            role: 'Frontend Developer',
+            platform: ['iOS WebView', 'Android WebView'],
+        },
+
+        situation:
+            '웹뷰 기반 앱에서 동일한 마퀴(무한 스크롤) 애니메이션을 iOS와 Android에서 공통으로 제공해야 했습니다.',
+
+        problem: [
+            '동일한 코드임에도 iOS와 Android WebView에서 마퀴 애니메이션 속도가 다르게 보임',
+            'CSS 기반 애니메이션 사용 중',
+            '디자인 요구사항상 두 플랫폼의 시각적 속도 차이는 허용되지 않음',
+        ],
+
+        hypothesis: [
+            'WebView별 렌더링 성능 차이',
+            '이미지 로딩 완료 시점 차이',
+            '컨테이너 width 계산 타이밍 문제',
+        ],
+
+        investigation: [
+            'iOS / Android WebView에서 애니메이션 시작 시점 비교',
+            '마퀴 내부 이미지 로딩 완료 전후 속도 변화 관찰',
+            '초기 width 값이 플랫폼마다 다르게 계산되는 것을 확인',
+            'CSS animation이 고정 시간 기반이라 실제 픽셀 이동량이 달라지는 문제로 판단',
+        ],
+
+        rootCause:
+            '이미지 로딩 시점 차이로 인해 마퀴 컨테이너의 실제 width가 플랫폼별로 다르게 계산되었고, CSS 기반 시간 애니메이션이 이를 보정하지 못함',
+
+        solution: [
+            'ResizeObserver를 사용해 실제 콘텐츠 width 변경 시점을 감지',
+            'CSS animation 대신 requestAnimationFrame 기반 픽셀 단위 이동 로직으로 변경',
+            '초당 이동 거리(px/sec)를 기준으로 애니메이션 속도를 통일',
+        ],
+
+        result: [
+            'iOS / Android WebView에서 동일한 체감 속도의 마퀴 애니메이션 구현',
+            '이미지 로딩 타이밍과 무관한 안정적인 동작 확보',
+        ],
+
+        takeaways: [
+            'WebView 환경에서는 렌더링 완료 시점을 명시적으로 다뤄야 한다',
+            '시간 기반 애니메이션은 플랫폼 차이를 숨기지 못할 수 있다',
+            '픽셀 기반 RAF 애니메이션은 플랫폼 간 일관성을 확보하는 데 유리하다',
+        ],
+
+        techStack: [
+            'WebView',
+            'ResizeObserver',
+            'requestAnimationFrame',
+            'JavaScript Animation',
+        ],
+    },
+];
+
