@@ -128,7 +128,7 @@ const HeroSection = () => {
 
 
     return (
-        <section id='hero' className='w-full min-h-screen relative flex flex-col items-center text-black transparent pointer-events-none '>
+        <section id='hero' className=' w-full min-h-screen relative flex flex-col items-center text-black transparent pointer-events-none '>
             <div id='커튼' className='absolute top-0 left-0 flex flex-col w-full min-h-screen bg-green-500 ' />            <div className="mt-20 flex justify-center w-full gap-2 md:gap-4 px-4 ">
                 {/* 문자 배열로 효율적으로 렌더링 */}
                 {['F', 'r', 'o', 'n', 't', '-'].map((char, i) => (
@@ -166,16 +166,19 @@ const HeroSection = () => {
                 ))}
             </div>
             <div className='relative mt-4 sm:mt-10 p-4 w-full h-full flex-[2] md:flex-1  flex flex-col items-center justify-center  text-white pointer-events-none'>
-                <p ref={(el) => { textRefs.current[0] = el }} className="absolute  px-4 opacity-0   sm:leading-14 leading-relaxed break-keep" style={{ fontSize: 'clamp(1.4rem, 3vw, 2.3vh)', }} >
-                    <span>웹을 그저 </span>
-                    <span className='sm:text-3xl md:text-4xl text-3xl text-[#00ff00] text-nowrap  '>보는 것</span>
-                    <span >이 아닌, </span> <br />
-                    <span className='sm:text-3xl md:text-4xl text-3xl text-[#00ff00] text-nowrap'>느낄 수 있는 경험</span>
-                    <span>으로 만들고 싶습니다.</span>
+                <p ref={(el) => { textRefs.current[0] = el }} className="absolute px-4 opacity-0 sm:leading-14 leading-relaxed break-keep" style={{ fontSize: 'clamp(1.4rem, 3vw, 2.3vh)', }} >
+                    <span>단순히 보여지는 화면을 넘어,</span> <br />
+                    <span>어느 환경에서도 </span>
+                    <span className='sm:text-3xl md:text-4xl text-3xl text-[#00ff00] text-nowrap'>일관된 몰입감</span>
+                    <span>을 전합니다.</span>
                 </p>
-                <p ref={(el) => { textRefs.current[1] = el }} className="absolute px-4 opacity-0  sm:leading-14 leading-relaxed break-keep" style={{ fontSize: 'clamp(1.4rem, 3vw, 2.3vh)', }}>
-                    작은 움직임 하나까지 고민하며,<br />
-                    더 좋은 <span className='sm:text-3xl md:text-4xl text-2xl text-[#00ff00] text-nowrap'>사용자 경험</span>을 고민하는 개발자가 되겠습니다.</p>
+                <p ref={(el) => { textRefs.current[1] = el }} className="absolute px-4 opacity-0 sm:leading-14 leading-relaxed break-keep" style={{ fontSize: 'clamp(1.4rem, 3vw, 2.3vh)', }}>
+                    <span className='sm:text-3xl md:text-4xl text-2xl text-[#00ff00] text-nowrap'>1px의 선명함</span>
+                    <span>과 </span>
+                    <span className='sm:text-3xl md:text-4xl text-2xl text-[#00ff00] text-nowrap'>1ms의 반응성</span>
+                    <span>을 추구하며,</span><br />
+                    <span>기술로 경험의 디테일을 완성합니다.</span>
+                </p>
             </div>
             <div className='flex flex-col flex-1 pointer-events-auto  '>
 
