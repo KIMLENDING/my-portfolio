@@ -5,6 +5,8 @@ import { Anton } from "next/font/google";
 import { project } from "@/data/project";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { ArrowLeft } from "lucide-react";
+import Link from "next/link";
 
 const anton = Anton({ weight: "400", subsets: ["latin"] });
 
@@ -96,6 +98,15 @@ const DetailPage = ({ id }: { id: string }) => {
 
     return (
         <div className="min-h-screen w-full py-24 px-4 md:px-10 bg-zinc-900 text-white overflow-x-hidden">
+            {/* 뒤로가기 버튼 */}
+            <Link
+                href="/#project" replace
+                className="inline-flex items-center gap-2 mb-8 text-gray-400 hover:text-green-400 transition-colors group"
+            >
+                <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
+                <span>돌아가기</span>
+            </Link>
+
             <div className="mb-16 md:mb-24">
                 <h2
                     ref={titleRef}

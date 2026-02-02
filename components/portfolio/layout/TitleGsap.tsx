@@ -36,11 +36,11 @@ const TitleGsap = ({ sectionRef, title, description }: { sectionRef: React.RefOb
                 className="relative inline-block opacity-0"
             >
                 <h2 className={`${anton.className} text-5xl md:text-7xl lg:text-8xl text-white relative z-10`}>
-                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-green-600">
+                    <span className="select-none pointer-events-none text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-green-600">
                         {title}
                     </span>
                 </h2>
-                <p className="text-green-400 text-lg md:text-xl  mb-8">
+                <p className="text-green-400 text-lg md:text-xl  mb-8 select-none pointer-events-none">
                     {description}
                 </p>
             </div>
