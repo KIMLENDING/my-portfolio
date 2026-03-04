@@ -109,7 +109,7 @@ export const project = [{
     summary:
         '숫자가 나타나고, 그 숫자를 순서대로 클릭하여 기억력을 테스트하는 게임입니다. 난이도가 점차 상승하며, 점수를 랭킹에 등록해 다른 사용자와 경쟁할 수 있습니다.',
     period: {
-        v1: '2024.02.21 ~ 2024.02.24',
+        v1: '2025.02.21 ~ 2025.02.24',
     },
     stack: [
         'React',
@@ -155,6 +155,46 @@ export const project = [{
     },
     githubLink: 'https://github.com/KIMLENDING/memory-game',
     vercelLink: 'https://memory-game-ashy-six.vercel.app/',
+},
+{
+    id: 'Budget-App',
+    title: 'Budget App (가계부 앱)',
+    githubLink: 'https://github.com/KIMLENDING/budget-app',
+    description: 'React Native와 Expo를 사용하여 개발한 개인 자산 관리 모바일 애플리케이션입니다. 클로드 코드를 통한 바이브 코딩으로 제작되었습니다.',
+    period: {
+        v1: '2025/11/01 - 2025/11/25',
+    },
+    summary: "사용자가 수입과 지출을 직관적으로 관리하고 통계를 확인할 수 있는 모바일 가계부입니다. 반복 거래 자동 생성, 히트맵 기반 통계 시각화, JSON 데이터 백업 등 실용적인 기능을 제공합니다.",
+    mainFeatures: [
+        "거래 관리: 수입/지출 내역 추가, 수정, 삭제 및 카테고리 분류",
+        "반복 거래 시스템: 일/주/월/년 단위 고정 지출 및 수입 자동 생성",
+        "상세 통계 및 시각화: 히트맵 및 카테고리별 지출 순위 차트 제공",
+        "데이터 백업: JSON 형식의 데이터 내보내기/가져오기 기능",
+        "사용자 인터랙션: 커스텀 숫자 키패드 및 부드러운 리스트 애니메이션"
+    ],
+    techChallenges: [
+        {
+            title: "Zustand 상태 관리 및 데이터 지속성",
+            description: "Persist 미들웨어를 사용하여 로컬 스토리지에 데이터를 안전하게 보존하고 전역 상태를 효율적으로 관리",
+        },
+        {
+            title: "복잡한 반복 거래 로직 구현",
+            description: "다양한 주기(매일~매년)를 지원하는 유틸리티 함수를 설계하여 정기적인 거래를 오차 없이 자동 생성",
+        },
+        {
+            title: "데이터 시각화 라이브러리 커스텀",
+            description: "react-native-gifted-charts를 프로젝트 디자인에 맞춰 커스터마이징하여 직관적인 통계 화면 구현",
+        },
+    ],
+    stack: [
+        'React Native (Expo)',
+        'TypeScript',
+        'Zustand',
+        'React Navigation',
+        'AsyncStorage',
+        'dayjs',
+        'Gifted Charts'
+    ],
 }
 
 ]

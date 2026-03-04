@@ -15,10 +15,19 @@ const ProjectSection = () => {
 
     const scrollContents = [
         {
+            url: '/Budget-App',
+            thumbnail: '/img/splash-icon.png',
+            project: 'Budget App (가계부 앱)',
+            tags: ['React Native', 'Expo', 'Zustand'],
+            date: '2025.11',
+            content: '클로드 코드를 통한 바이브 코딩으로 제작된 개인 가계부 앱입니다. 반복 거래 자동화 및 데이터 시각화 기능을 갖춘 모바일 환경에서의 자산 관리를 지원합니다.'
+        },
+        {
             url: '/H-Helper',
             thumbnail: '/img/h-helper.png',
             project: 'H-Helper App',
             tags: ['Next.js', 'React Query', 'UI/UX Design'],
+            date: '2025.04',
             content: '운동 기록을 관리하는 웹 애플리케이션으로, Next.js와 React Query를 활용해 서버 상태를 관리했습니다. 사용자 경험을 고려한 UI/UX 설계로, 운동 계획, 운동 히스토리, 운동 데이터 분석 등 여러 기능을 쉽게 사용할 수 있습니다.'
 
         },
@@ -27,6 +36,7 @@ const ProjectSection = () => {
             thumbnail: '/img/game.png',
             project: 'Moment Memory Game',
             tags: ['GSAP', 'Animation', 'Zustand'],
+            date: '2025.02',
             content: '순간 기억력 게임으로, GSAP를 활용해 부드러운 애니메이션 효과를 구현했습니다.  '
         },
         {
@@ -34,6 +44,7 @@ const ProjectSection = () => {
             thumbnail: '/img/portfolio.png',
             project: 'Portfolio Website',
             tags: ['React', 'Responsive Design', 'GSAP', 'Lenis'],
+            date: '2025.05',
             content: '개인 포트폴리오 웹사이트로, React와 Tailwind CSS를 활용해 반응형 디자인을 구현했습니다. 모던한 UI와 부드러운 애니메이션으로 사용자 경험을 개선했습니다.'
         },
     ];
@@ -127,6 +138,9 @@ const ProjectSection = () => {
                                             width={500}
                                             height={300}
                                         />
+                                    </div>
+                                    <div className="absolute top-4 right-4 px-3 py-1 bg-zinc-900/60 backdrop-blur-md rounded-full text-zinc-300 text-xs font-medium border border-zinc-700/50">
+                                        {item.date}
                                     </div>
                                     <div className="absolute inset-0 bg-gradient-to-t from-zinc-900 to-transparent opacity-60"></div>
                                     <h3 className="absolute bottom-4 left-4 text-3xl font-bold text-white">
