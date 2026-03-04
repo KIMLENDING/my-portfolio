@@ -8,8 +8,9 @@ import TitleGsap from './layout/TitleGsap';
 import Link from 'next/link';
 gsap.registerPlugin(ScrollTrigger);
 const ProjectSection = () => {
-    const sectionRef = useRef(null);
-    const titleRef = useRef(null);
+    const sectionRef = useRef<HTMLElement>(null);
+    const titleRef = useRef<HTMLDivElement>(null);
+    const projectRefs = useRef<(HTMLDivElement | null)[]>([]);
 
     const [activeProject, setActiveProject] = useState(0);
 
@@ -100,14 +101,30 @@ const ProjectSection = () => {
             >
                 {/* 왼쪽 타이틀 */}
                 <div className='md:sticky md:top-24 md:self-start md:h-[calc(100vh-12rem)] flex flex-col justify-between'>
-                    <TitleGsap sectionRef={sectionRef} title={'Projects'} description={''} />
+                    <TitleGsap
+                        sectionRef={sectionRef}
+                        title={'Projects'}
+                        description={''}
+                        onClick={() => {
+                            sectionRef.current?.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'start'
+                            });
+                        }}
+                    />
 
                     <div className="hidden md:flex flex-col space-y-6 pl-6">
                         {scrollContents.map((item, idx) => (
                             <button
                                 key={idx}
                                 className={`text-left transition-all duration-300 ${activeProject === idx ? 'text-green-400 font-bold' : 'text-gray-400 hover:text-green-300'}`}
-                                onClick={() => setActiveProject(idx)}
+                                onClick={() => {
+                                    setActiveProject(idx);
+                                    projectRefs.current[idx]?.scrollIntoView({
+                                        behavior: 'smooth',
+                                        block: 'center'
+                                    });
+                                }}
                             >
                                 <span className="text-xl">{item.project}</span>
                                 {activeProject === idx && (
@@ -123,6 +140,7 @@ const ProjectSection = () => {
                     {scrollContents.map((item, i) => (
                         <div
                             key={i}
+                            ref={(el) => { projectRefs.current[i] = el; }}
                             className={`w-full group transition-all duration-500 transform ${activeProject === i ? 'md:scale-105' : 'md:opacity-70'
                                 }`}
                             onMouseEnter={() => setActiveProject(i)}

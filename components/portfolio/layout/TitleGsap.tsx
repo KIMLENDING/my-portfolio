@@ -6,7 +6,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
 const anton = Anton({ weight: '400', subsets: ['latin'] });
 
-const TitleGsap = ({ sectionRef, title, description }: { sectionRef: React.RefObject<HTMLElement | null>, title: string, description: string }) => {
+const TitleGsap = ({ sectionRef, title, description, onClick }: { sectionRef: React.RefObject<HTMLElement | null>, title: string, description: string, onClick?: () => void }) => {
     const titleRef = useRef(null);
     useEffect(() => {
         // 타이틀 애니메이션
@@ -30,17 +30,17 @@ const TitleGsap = ({ sectionRef, title, description }: { sectionRef: React.RefOb
         );
     }, [sectionRef]);
     return (
-        <div className=" mb-16 md:mb-24 flex items-start">
+        <div className={`mb-16 md:mb-24 flex items-start ${onClick ? 'cursor-pointer' : ''}`} onClick={onClick}>
             <div
                 ref={titleRef}
                 className="relative inline-block opacity-0"
             >
                 <h2 className={`${anton.className} text-5xl md:text-7xl lg:text-8xl text-white relative z-10`}>
-                    <span className="select-none pointer-events-none text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-green-600">
+                    <span className="select-none text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-green-600">
                         {title}
                     </span>
                 </h2>
-                <p className="text-green-400 text-lg md:text-xl  mb-8 select-none pointer-events-none">
+                <p className="text-green-400 text-lg md:text-xl  mb-8 select-none">
                     {description}
                 </p>
             </div>
