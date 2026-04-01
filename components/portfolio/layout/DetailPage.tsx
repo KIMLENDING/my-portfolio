@@ -156,13 +156,15 @@ const DetailPage = ({ id }: { id: string }) => {
                         >
                             GitHub
                         </a>
-                        <a
-                            href={data.vercelLink}
-                            target="_blank"
-                            className="bg-white text-zinc-900 hover:bg-zinc-200 px-4 py-2 rounded text-sm transform transition-transform duration-300 hover:scale-105"
-                        >
-                            Live Site
-                        </a>
+                        {data.vercelLink && (
+                            <a
+                                href={data.vercelLink}
+                                target="_blank"
+                                className="bg-white text-zinc-900 hover:bg-zinc-200 px-4 py-2 rounded text-sm transform transition-transform duration-300 hover:scale-105"
+                            >
+                                Live Site
+                            </a>
+                        )}
                     </div>
                 </div>
 
