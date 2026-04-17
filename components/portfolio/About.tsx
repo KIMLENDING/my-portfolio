@@ -61,13 +61,13 @@ const AboutSection = () => {
                                     스킬
                                 </h3>
 
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 leading-relaxed">
                                     {skills.map((skillGroup, index) => (
-                                        <div key={index} className="bg-zinc-700/50 rounded-lg p-4">
-                                            <h4 className="text-green-400 font-semibold mb-3">{skillGroup.category}</h4>
+                                        <div key={index} className="bg-zinc-800/20 border border-zinc-800/50 rounded-2xl p-6 hover:border-zinc-700/50 transition-all duration-500">
+                                            <h4 className="text-green-400 font-bold mb-4 text-sm tracking-widest uppercase">{skillGroup.category}</h4>
                                             <div className="flex flex-wrap gap-2">
                                                 {skillGroup.items.map((skill, idx) => (
-                                                    <span key={idx} className="px-3 py-1 bg-zinc-800 text-gray-300 text-sm rounded-md hover:bg-green-500 hover:text-zinc-700 transition-colors">
+                                                    <span key={idx} className="bg-zinc-800/80 hover:bg-green-500/10 text-zinc-300 hover:text-green-400 border border-zinc-700 hover:border-green-500/30 rounded-lg px-3 py-1.5 text-xs font-medium transition-all duration-300">
                                                         {skill}
                                                     </span>
                                                 ))}
@@ -99,14 +99,16 @@ const AboutSection = () => {
                                     학력
                                 </h3>
 
-                                <div className="space-y-6">
+                                <div className="space-y-4">
                                     {education.map((edu, index) => (
-                                        <div key={index} className="bg-zinc-700/50 rounded-lg p-5 relative">
-                                            <div className="absolute top-0 right-0 bg-green-500 text-black text-xs font-medium px-3 py-1 rounded-bl-lg rounded-tr-lg">
-                                                {edu.period}
+                                        <div key={index} className="group relative bg-zinc-800/20 border border-zinc-800/50 rounded-2xl p-6 hover:border-zinc-700/50 transition-all duration-500">
+                                            <div className="flex justify-between items-start mb-4">
+                                                <h4 className="text-white font-bold text-lg group-hover:text-green-400 transition-colors uppercase tracking-tight">{edu.field}</h4>
+                                                <span className="bg-zinc-800/80 text-green-500 border border-green-500/20 px-3 py-1 rounded-full text-[10px] font-mono uppercase tracking-widest whitespace-nowrap">
+                                                    {edu.period}
+                                                </span>
                                             </div>
-                                            <h4 className="text-white font-semibold text-lg">{edu.field}</h4>
-                                            <p className="text-gray-300 mt-2">{edu.school}</p>
+                                            <p className="text-zinc-500 text-sm font-medium pl-4 border-l-2 border-zinc-800">{edu.school}</p>
                                         </div>
                                     ))}
                                 </div>
@@ -118,15 +120,19 @@ const AboutSection = () => {
                                     직장 경력
                                 </h3>
 
-                                <div className="space-y-6">
+                                <div className="space-y-4">
                                     {workExperiences.map((work, index) => (
-                                        <div key={index} className="bg-zinc-700/50 rounded-lg p-5 relative">
-                                            <div className="absolute top-0 right-0 bg-green-500 text-black text-xs font-medium px-3 py-1 rounded-bl-lg rounded-tr-lg">
-                                                {work.period}
+                                        <div key={index} className="group relative bg-zinc-800/20 border border-zinc-800/50 rounded-2xl p-6 hover:border-zinc-700/50 transition-all duration-500">
+                                            <div className="flex justify-between items-start mb-4">
+                                                <div>
+                                                    <h4 className="text-white font-bold text-lg group-hover:text-green-400 transition-colors uppercase tracking-tight">{work.company}</h4>
+                                                    <p className="text-green-500/80 text-xs font-bold mt-1 tracking-wider uppercase">{work.role}</p>
+                                                </div>
+                                                <span className="bg-zinc-800/80 text-green-500 border border-green-500/20 px-3 py-1 rounded-full text-[10px] font-mono uppercase tracking-widest whitespace-nowrap">
+                                                    {work.period}
+                                                </span>
                                             </div>
-                                            <h4 className="text-white font-semibold text-lg">{work.company}</h4>
-                                            <p className="text-green-400 text-sm mt-1">{work.role}</p>
-                                            <p className="text-gray-300 mt-2 text-sm">{work.summary}</p>
+                                            <p className="text-zinc-400 text-sm leading-relaxed">{work.summary}</p>
                                         </div>
                                     ))}
                                 </div>
@@ -139,14 +145,16 @@ const AboutSection = () => {
                                     경험/활동/교육
                                 </h3>
 
-                                <div className="space-y-6">
+                                <div className="space-y-4">
                                     {experiences.map((exp, index) => (
-                                        <div key={index} className="bg-zinc-700/50 rounded-lg p-5 relative">
-                                            <div className="absolute top-0 right-0 bg-green-500 text-black text-xs font-medium px-3 py-1 rounded-bl-lg rounded-tr-lg">
-                                                {exp.period}
+                                        <div key={index} className="group relative bg-zinc-800/20 border border-zinc-800/50 rounded-2xl p-6 hover:border-zinc-700/50 transition-all duration-500">
+                                            <div className="flex justify-between items-start mb-4">
+                                                <h4 className="text-white font-bold text-lg group-hover:text-green-400 transition-colors uppercase tracking-tight">{exp.title}</h4>
+                                                <span className="bg-zinc-800/80 text-green-500 border border-green-500/20 px-3 py-1 rounded-full text-[10px] font-mono uppercase tracking-widest whitespace-nowrap">
+                                                    {exp.period}
+                                                </span>
                                             </div>
-                                            <h4 className="text-white font-semibold text-lg">{exp.title}</h4>
-                                            <p className="text-gray-300 mt-2">{exp.description}</p>
+                                            <p className="text-zinc-400 text-sm leading-relaxed">{exp.description}</p>
                                         </div>
                                     ))}
                                 </div>

@@ -5,8 +5,9 @@ import { Anton } from "next/font/google";
 import { project } from "@/data/project";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, Lightbulb, Target, Rocket, Smartphone, Code2, Calendar, Cpu, Zap, ListChecks, Database, Check, Github, ExternalLink } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 
 const anton = Anton({ weight: "400", subsets: ["latin"] });
 
@@ -20,38 +21,81 @@ const DetailPage = ({ id }: { id: string }) => {
     const leftColumnRef = useRef(null);
     const rightColumnRef = useRef(null);
     const buttonsRef = useRef(null);
+    const irRef = useRef(null);
+    const galleryRef = useRef(null);
+    const archRef = useRef(null);
 
     useEffect(() => {
         // Register ScrollTrigger plugin
         gsap.registerPlugin(ScrollTrigger);
 
-        // Initial entrance animations
+        // Initial entrance animations (Hero Section)
         const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
 
         tl.fromTo(titleRef.current,
-            { y: 100, opacity: 0 },
-            { y: 0, opacity: 1, duration: 1 }
+            { y: 60, opacity: 0 },
+            { y: 0, opacity: 1, duration: 0.8 }
         )
             .fromTo(summaryRef.current,
-                { y: 50, opacity: 0 },
-                { y: 0, opacity: 1, duration: 0.8 },
-                "-=0.6"
-            )
-            .fromTo(leftColumnRef.current,
-                { x: -50, opacity: 0 },
-                { x: 0, opacity: 1, duration: 0.8 },
-                "-=0.4"
-            )
-            .fromTo(rightColumnRef.current,
-                { x: 50, opacity: 0 },
-                { x: 0, opacity: 1, duration: 0.8 },
-                "-=0.8"
-            )
-            .fromTo(buttonsRef.current,
                 { y: 30, opacity: 0 },
                 { y: 0, opacity: 1, duration: 0.6 },
                 "-=0.4"
+            )
+            .fromTo(buttonsRef.current,
+                { y: 20, opacity: 0 },
+                { y: 0, opacity: 1, duration: 0.6 },
+                "-=0.4"
             );
+
+        // Scroll animations for new sections
+        if (irRef.current) {
+            gsap.fromTo(gsap.utils.toArray((irRef.current as HTMLElement).children),
+                { y: 50, opacity: 0 },
+                {
+                    y: 0,
+                    opacity: 1,
+                    duration: 0.8,
+                    stagger: 0.2,
+                    ease: "power3.out",
+                    scrollTrigger: {
+                        trigger: irRef.current,
+                        start: "top 85%",
+                    }
+                }
+            );
+        }
+
+        if (galleryRef.current) {
+            gsap.fromTo(gsap.utils.toArray(".gallery-item"),
+                { scale: 0.8, opacity: 0 },
+                {
+                    scale: 1,
+                    opacity: 1,
+                    duration: 0.6,
+                    stagger: 0.1,
+                    ease: "back.out(1.7)",
+                    scrollTrigger: {
+                        trigger: galleryRef.current,
+                        start: "top 85%",
+                    }
+                }
+            );
+        }
+
+        if (archRef.current) {
+            gsap.fromTo(archRef.current,
+                { y: 50, opacity: 0 },
+                {
+                    y: 0,
+                    opacity: 1,
+                    duration: 0.8,
+                    scrollTrigger: {
+                        trigger: archRef.current,
+                        start: "top 85%",
+                    }
+                }
+            );
+        }
 
         // Create staggered animations for list items
         gsap.utils.toArray(".animate-list li").forEach((item, i) => {
@@ -112,90 +156,219 @@ const DetailPage = ({ id }: { id: string }) => {
                     ref={titleRef}
                     className={`${anton.className} text-5xl md:text-7xl lg:text-8xl`}
                 >
-                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-green-600">
+                    <span
+                        className="text-transparent bg-clip-text"
+                        style={{
+                            backgroundImage: `linear-gradient(to right, ${data.themeColor || '#4ade80'}, ${data.themeColor ? data.themeColor + 'dd' : '#16a34a'})`
+                        }}
+                    >
                         {data.title}
                     </span>
                 </h2>
-                <p ref={summaryRef} className="mt-4 text-lg text-zinc-300 max-w-3xl">{data.summary}</p>
-            </div>
+                <p ref={summaryRef} className="mt-4 text-lg text-zinc-300 max-w-3xl leading-relaxed">{data.summary}</p>
 
-            <div className="mx-auto max-w-6xl grid grid-cols-1 md:grid-cols-2 gap-12">
-                <div ref={leftColumnRef} className="space-y-6">
-                    <Section title="📌 개발 기간">
-                        <ul className="text-sm animate-list">
-                            <li>v1: {data.period.v1}</li>
-                            {data.period.v2 && <li>v2: {data.period.v2}</li>}
-                        </ul>
-                    </Section>
-
-                    <Section title="⚙️ 사용 기술">
-                        <ul className="flex flex-wrap gap-2 text-sm animate-list">
-                            {data.stack.map((tech) => (
-                                <li key={tech} className="bg-zinc-800 rounded px-2 py-1 hover:bg-green-600 transition-colors duration-300">
-                                    {tech}
-                                </li>
-                            ))}
-                        </ul>
-                    </Section>
-
-                    <Section title="🧩 기술적 도전">
-                        <ul className="list-disc pl-5 text-sm space-y-2 animate-list">
-                            {data.techChallenges.map((c, i) => (
-                                <li key={i}>
-                                    <span className="font-semibold">{c.title}:</span> {c.description}
-                                </li>
-                            ))}
-                        </ul>
-                    </Section>
-
-                    <div ref={buttonsRef} className="flex gap-4 mt-6">
+                <div ref={buttonsRef} className="flex flex-wrap gap-4 mt-8">
+                    {data.githubLink && (
                         <a
                             href={data.githubLink}
                             target="_blank"
-                            className="bg-green-600 hover:bg-green-700 px-4 py-2 rounded text-white text-sm transform transition-transform duration-300 hover:scale-105"
+                            rel="noopener noreferrer"
+                            className="flex items-center gap-2 bg-zinc-800 hover:bg-zinc-700 text-white px-6 py-3 rounded-xl border border-zinc-700/50 transition-all duration-300 hover:shadow-[0_0_20px_rgba(39,39,42,0.5)] group"
                         >
-                            GitHub
+                            <Github className="w-5 h-5 transition-transform group-hover:rotate-12" />
+                            <span className="font-semibold text-sm">GitHub Repository</span>
                         </a>
+                    )}
+                    {data.vercelLink && (
                         <a
                             href={data.vercelLink}
                             target="_blank"
-                            className="bg-white text-zinc-900 hover:bg-zinc-200 px-4 py-2 rounded text-sm transform transition-transform duration-300 hover:scale-105"
+                            rel="noopener noreferrer"
+                            className="flex items-center gap-2 px-6 py-3 rounded-xl text-white font-semibold text-sm transition-all duration-300 hover:shadow-lg hover:brightness-110 active:scale-95 group"
+                            style={{
+                                background: `linear-gradient(135deg, ${data.themeColor || '#10b981'})`
+                            }}
                         >
-                            Live Site
+                            <span className="relative flex h-2 w-2">
+                                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
+                                <span className="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
+                            </span>
+                            <span>Visit Live Site</span>
+                            <ExternalLink className="w-4 h-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
                         </a>
+                    )}
+                </div>
+            </div>
+
+            {/* IR Section - Problem & Solution */}
+            {data.irContent && (
+                <div ref={irRef} className="mx-auto max-w-6xl mb-24 grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div className="bg-zinc-800/50 p-8 rounded-2xl border border-zinc-700/50 hover:border-green-500/30 transition-colors group">
+                        <div className="flex items-center gap-3 mb-4">
+                            <div className="p-2 bg-amber-500/10 rounded-lg">
+                                <Lightbulb className="w-6 h-6 text-amber-500" />
+                            </div>
+                            <h3 className="text-2xl font-bold text-white">Problem</h3>
+                        </div>
+                        <p className="text-zinc-400 leading-relaxed text-sm md:text-base">
+                            {data.irContent.problem}
+                        </p>
+                    </div>
+
+                    <div className="bg-zinc-800/50 p-8 rounded-2xl border border-zinc-700/50 hover:border-green-500/30 transition-colors group">
+                        <div className="flex items-center gap-3 mb-4">
+                            <div className="p-2 bg-green-500/10 rounded-lg">
+                                <Target className="w-6 h-6 text-green-500" />
+                            </div>
+                            <h3 className="text-2xl font-bold text-white">Solution</h3>
+                        </div>
+                        <p className="text-zinc-400 leading-relaxed text-sm md:text-base">
+                            {data.irContent.solution}
+                        </p>
+                        {data.irContent.valueProp && (
+                            <div className="mt-6 pt-6 border-t border-zinc-700/50 flex items-center gap-2">
+                                <Rocket className="w-5 h-5 text-green-500" />
+                                <span className="text-green-500 font-semibold">{data.irContent.valueProp}</span>
+                            </div>
+                        )}
                     </div>
                 </div>
+            )}
 
-                <div ref={rightColumnRef} className="space-y-6">
-                    <Section title="✨ 주요 기능">
-                        <ul className="list-disc pl-5 text-sm space-y-1 animate-list">
-                            {data.mainFeatures.map((f, i) => (
-                                <li key={i}>{f}</li>
+            {/* Screenshots Gallery */}
+            {data.screenshots && (
+                <div ref={galleryRef} className="mx-auto max-w-6xl mb-24">
+                    <div className="flex items-center gap-3 mb-8">
+                        <Smartphone className="w-6 h-6 text-green-500" />
+                        <h3 className="text-3xl font-bold">Visual Showcase</h3>
+                    </div>
+                    <div className="grid grid-cols-2 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                        {data.screenshots.map((src, i) => (
+                            <div key={i} className="gallery-item relative aspect-[9/19] rounded-xl overflow-hidden border border-zinc-800 hover:border-green-500/50 transition-all duration-500 group">
+                                <Image
+                                    src={src}
+                                    alt={`Screenshot ${i + 1}`}
+                                    fill
+                                    className="object-cover"
+                                />
+                                <div className="absolute inset-0 bg-gradient-to-t from-zinc-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                                    <span className="text-xs font-medium text-white">View Detail</span>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            )}
+
+            <div className="mx-auto max-w-6xl grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div ref={leftColumnRef} className="space-y-8">
+                    <Section title="개발 기간" icon={<Calendar className="w-5 h-5" />}>
+                        <div className="flex flex-col gap-2">
+                            <div className="flex items-center gap-2 bg-zinc-800/30 p-3 rounded-xl border border-zinc-700/30">
+                                <span className="text-zinc-500 font-mono text-xs uppercase tracking-wider">v1</span>
+                                <span className="text-zinc-300 font-medium">{data.period.v1}</span>
+                            </div>
+                            {data.period.v2 && (
+                                <div className="flex items-center gap-2 bg-zinc-800/30 p-3 rounded-xl border border-zinc-700/30">
+                                    <span className="text-zinc-500 font-mono text-xs uppercase tracking-wider">v2</span>
+                                    <span className="text-zinc-300 font-medium">{data.period.v2}</span>
+                                </div>
+                            )}
+                        </div>
+                    </Section>
+
+                    <Section title="사용 기술" icon={<Cpu className="w-5 h-5" />}>
+                        <div className="flex flex-wrap gap-2">
+                            {data.stack.map((tech) => (
+                                <span key={tech} className="bg-zinc-800/80 hover:bg-green-500/10 text-zinc-300 hover:text-green-400 border border-zinc-700 hover:border-green-500/30 rounded-lg px-3 py-1.5 text-xs font-medium transition-all duration-300">
+                                    {tech}
+                                </span>
                             ))}
-                        </ul>
+                        </div>
+                    </Section>
+
+                    <Section title="기술적 도전" icon={<Zap className="w-5 h-5" />}>
+                        <div className="space-y-4">
+                            {data.techChallenges.map((c, i) => (
+                                <div key={i} className="group/item">
+                                    <div className="flex items-start gap-3">
+                                        <div className="mt-1 flex-shrink-0 w-1.5 h-1.5 rounded-full bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.6)]" />
+                                        <div>
+                                            <h4 className="text-sm font-bold text-white mb-1 group-hover/item:text-green-400 transition-colors uppercase tracking-tight">{c.title}</h4>
+                                            <p className="text-zinc-400 text-sm leading-relaxed">{c.description}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </Section>
+                </div>
+
+                <div ref={rightColumnRef} className="space-y-8">
+                    <Section title="주요 기능" icon={<ListChecks className="w-5 h-5" />}>
+                        <div className="grid grid-cols-1 gap-3">
+                            {data.mainFeatures.map((f, i) => (
+                                <div key={i} className="flex items-center gap-3 bg-zinc-800/30 p-4 rounded-xl border border-zinc-700/30 hover:border-green-500/20 transition-all group/feat">
+                                    <div className="p-1 bg-green-500/10 rounded-md group-hover/feat:bg-green-500/20 transition-colors">
+                                        <Check className="w-3.5 h-3.5 text-green-500" />
+                                    </div>
+                                    <span className="text-zinc-300 text-sm font-medium">{f}</span>
+                                </div>
+                            ))}
+                        </div>
                     </Section>
 
                     {data.schemaOverview && (
-                        <Section title="📁 스키마 개요">
-                            <ul className="list-disc pl-5 text-sm space-y-1 animate-list">
+                        <Section title="스키마 개요" icon={<Database className="w-5 h-5" />}>
+                            <div className="space-y-3">
                                 {Object.entries(data.schemaOverview).map(([model, desc]) => (
-                                    <li key={model}>
-                                        <span className="font-semibold">{model}</span>: {desc}
-                                    </li>
+                                    <div key={model} className="bg-zinc-900/50 p-4 rounded-xl border border-zinc-800/80 hover:bg-zinc-800/40 transition-all">
+                                        <div className="flex items-center gap-2 mb-2">
+                                            <div className="w-2 h-2 rounded-full bg-blue-500" />
+                                            <span className="font-bold text-white text-sm">{model}</span>
+                                        </div>
+                                        <p className="text-zinc-500 text-xs leading-relaxed pl-4 border-l border-zinc-800">
+                                            {desc}
+                                        </p>
+                                    </div>
                                 ))}
-                            </ul>
+                            </div>
                         </Section>
                     )}
                 </div>
             </div>
+
+            {/* Architecture Section */}
+            {data.architecture && (
+                <div ref={archRef} className="mx-auto max-w-6xl mt-24">
+                    <Section title="📂 Project Architecture" icon={<Database className="w-5 h-5" />}>
+                        <div className="bg-zinc-950 p-6 rounded-xl border border-zinc-800 mt-4 overflow-x-auto">
+                            <div className="flex items-center gap-2 mb-4 text-zinc-500">
+                                <Code2 className="w-4 h-4" />
+                                <span className="text-xs font-mono uppercase tracking-widest">Directory Tree</span>
+                            </div>
+                            <pre className="text-sm font-mono text-green-500/90 leading-relaxed">
+                                {data.architecture}
+                            </pre>
+                        </div>
+                    </Section>
+                </div>
+            )}
         </div>
     );
 };
 
-const Section = ({ title, children }: { title: string; children: React.ReactNode }) => (
-    <div className="section-container p-4 rounded-lg transition-all duration-300">
-        <h3 className="text-xl font-semibold mb-2 text-green-400">{title}</h3>
-        {children}
+const Section = ({ title, icon, children, className = "" }: { title: string; icon: React.ReactNode; children: React.ReactNode; className?: string }) => (
+    <div className={`section-container p-6 rounded-2xl bg-zinc-800/20 border border-zinc-800/50 transition-all duration-500 hover:border-zinc-700/50 ${className}`}>
+        <div className="flex items-center gap-3 mb-6">
+            <div className="p-2 bg-green-500/10 rounded-lg text-green-500">
+                {icon}
+            </div>
+            <h3 className="text-lg font-bold text-white tracking-tight">{title}</h3>
+        </div>
+        <div>
+            {children}
+        </div>
     </div>
 );
 

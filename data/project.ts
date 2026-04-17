@@ -195,6 +195,29 @@ export const project = [{
         'dayjs',
         'Gifted Charts'
     ],
+    screenshots: [
+        '/image/%ED%99%88%20%ED%99%94%EB%A9%B41.png',
+        '/image/%ED%99%88%20%ED%99%94%EB%A9%B42.png',
+        '/image/%EA%B1%B0%EB%9E%98%20%EB%82%B4%EC%97%AD%20%ED%99%94%EB%A9%B4.png',
+        '/image/%EA%B1%B0%EB%9E%98%20%EC%B6%94%EA%B0%80%20%ED%99%94%EB%A9%B4.png',
+        '/image/%ED%86%B5%EA%B3%84%20%ED%99%94%EB%A9%B41.png',
+        '/image/%ED%86%B5%EA%B3%84%20%ED%99%94%EB%A9%B42.png',
+    ],
+    irContent: {
+        problem: "기존의 많은 가계부 앱들은 기능은 많지만 인터페이스가 복잡하여 매번 지출을 기록하는 데 피로감을 줍니다. 특히, 반복되는 지출 항목을 수동으로 입력해야 하는 번거로움과 복잡한 대시보드는 사용자들로 하여금 가계부 작성을 중도 포기하게 만드는 주요 원인이 됩니다.",
+        solution: "가장 직관적이고 직관적인 사용자 경험을 목표로 개발되었습니다. 번들된 커스텀 숫자 키패드를 통해 빠른 입력을 지원하며, 강력한 반복 거래 예약 엔진을 통해 매일, 매주, 매월 발생하는 지출을 자동으로 관리합니다. 또한, 히트맵과 간결한 차트로 한눈에 소비 패턴을 파악할 수 있도록 했습니다.",
+        valueProp: "핵심 지표와 데이터의 선명한 시각화"
+    },
+    architecture: `src/
+├── screens/          # 주요 화면 (Home, Transactions, Statistics, Settings 등)
+├── components/       # 재사용 가능한 UI 컴포넌트 (Toast, Loading, CategoryIcon 등)
+├── navigation/       # 네비게이션 설정 (Root, BottomTab)
+├── store/           # Zustand를 이용한 상태 관리 로직
+├── utils/           # 통계 계산 및 반복 거래 생성 유틸리티
+├── constants/       # 색상 및 카테고리 설정 상수
+├── types/           # TypeScript 타입 정의
+└── hooks/           # 커스텀 훅 (useToast 등)`,
+    themeColor: '#10b981' // emerald-500
 }
 
 ]
